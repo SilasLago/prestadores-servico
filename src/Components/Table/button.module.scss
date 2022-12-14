@@ -1,0 +1,35 @@
+@import "Styles/_variables";
+
+@mixin button-base($color, $border, $background) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+    width: 40px;
+    height: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    color: $color;
+    background-color: $background;
+    border: $border;
+}
+
+.pages-button {
+    @include button-base($primary-color, 1px solid $primary-color, transparent);
+}
+
+.pages-button:hover {
+    background-color: $primary-color;
+    color: white;
+}
+
+.pages-button-selected {
+    @include button-base($light-color, none, $primary-color);
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}

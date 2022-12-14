@@ -1,0 +1,16 @@
+@import "Styles/_variables.scss";
+
+.content {
+    padding: 20px;
+    width: 100%;
+    &__title {
+        font-size: 36px;
+        font-weight: normal;
+    }
+}
+
+@media only screen and (max-width: $break-sm) {
+    .content {
+        padding: 0px;
+    }
+}

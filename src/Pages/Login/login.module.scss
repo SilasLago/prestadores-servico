@@ -1,0 +1,90 @@
+@import "Styles/_variables.scss";
+
+@mixin create-shadow($w, $h, $e) {
+    box-shadow: $w $h $e $shadow-color;
+}
+
+.background {
+    padding-top: $margin-top-base;
+    padding-bottom: $margin-bottom-base;
+    background-color: $primary-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .form {
+        padding: 30px;
+        border-radius: 10px;
+        width: 350px;
+        background-color: $light-color;
+        @include create-shadow(3px, 3px, 10px);
+        &__title {
+            font-weight: normal;
+            font-size: 24px;
+            padding: 0px;
+            margin: 0px;
+        }
+        &__container {
+            margin: 10px 10px 10px 0px;
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            &__label {
+                margin-bottom: 5px;
+                margin-left: 5px;
+                &::after {
+                    content: ":";
+                }
+            }
+            &__input {
+                margin: 0px;
+                width: calc(100% - 20px);
+                font-size: 16px;
+                padding: 10px 10px;
+                border: 1px solid gray;
+                border-radius: 5px;
+                background: linear-gradient(to bottom, white 80%, #dbdbdb);
+                &::placeholder {
+                    padding: 15px;
+                    font-size: 14px;
+                }
+                &:hover {
+                    background: linear-gradient(to bottom, white 50%, #d1d1d1);
+                    outline: 1px solid $primary-color;
+                }
+            }
+            &__button {
+                padding: 10px;
+                width: 50%;
+                cursor: pointer;
+                border-radius: 5px;
+                border: 1px solid gray;
+                color: $button-color-contrast;
+                background: linear-gradient(to bottom, white 80%, #dbdbdb);
+                &:hover {
+                    background: linear-gradient(to bottom, white 50%, #d1d1d1);
+                    outline: 1px solid $primary-color;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: $break-sm) {
+    .background {
+        .form {
+            width: 100%;
+        }
+    }
+}
+
+@media only screen and (max-width: $break-fold) {
+    .recaptcha iframe {
+        display: flex;
+        justify-content: start;
+    }
+
+    .recaptcha div {
+        max-width: 220px;
+        overflow-x: scroll;
+    }
+}

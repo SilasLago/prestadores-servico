@@ -1,0 +1,57 @@
+@import "Styles/_variables.scss";
+
+@mixin create-shadow($w, $h, $e) {
+    box-shadow: $w $h $e $shadow-color;
+}
+
+.header {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: $light-color;   
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    transition: 0.2s;
+    @include create-shadow(0px, 2px, 6px);
+    &:hover {
+        @include create-shadow(0px, 4px, 8px);
+    }
+    .mayer {
+        width: 150px; 
+    }
+    .user {
+        display: flex;
+        align-items: center;
+        &__message {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            &__name {
+                font-size: 24px;
+                font-weight: normal;
+                text-transform: uppercase;
+            }
+        }
+        &__picture {
+            width: 90px;
+        }
+    }
+}
+
+@media only screen and (max-width: $break-sm) {
+    .header {
+        justify-content: center;
+        .user {
+            &__message {
+                display: none;
+            }
+            &__picture {
+                width: 60px;
+            }
+        }
+        .mayer {
+            width: 100px; 
+        }
+    }
+}
