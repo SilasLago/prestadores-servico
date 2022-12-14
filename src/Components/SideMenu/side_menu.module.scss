@@ -6,6 +6,7 @@
     height: 100vh;
     position: fixed;
     top: 156px;
+    z-index: 0;
     &--closed {
         width: 0px;
     }

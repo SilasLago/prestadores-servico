@@ -1,6 +1,6 @@
 import GoogleRecaptcha from "Components/GoogleReCaptcha/google_recaptcha";
 import { useAuth } from "Hooks/useAuth/use_auth";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./login.module.scss";
 
@@ -18,6 +18,10 @@ function Login() {
     auth.authenticate(token, userId);
     navigate("/home", { replace: true });
   }
+
+  useEffect(() => {
+    auth.deauthenticate();
+  })
 
   return (
     <section className={styles.background}>

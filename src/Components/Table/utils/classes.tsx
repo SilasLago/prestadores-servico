@@ -73,11 +73,16 @@ export class Line {
         const propertyLength: number = 10;
         let newProperty: string = "";
 
-        for(let i = 0; i < propertyLength; i++) {
-            const randomCharIndex = Math.floor(Math.random() * chars.length);
-            newProperty += chars.slice(randomCharIndex, randomCharIndex + 1);
-        }
-
+        const curClass: any = this;
+        let propertyExists = false;
+        do {
+            for(let i = 0; i < propertyLength; i++) {
+                const randomCharIndex = Math.floor(Math.random() * chars.length);
+                newProperty += chars.slice(randomCharIndex, randomCharIndex + 1);
+            }
+            propertyExists = curClass[newProperty] !== undefined;
+        } while(propertyExists);
+        
         return newProperty;
     }
 

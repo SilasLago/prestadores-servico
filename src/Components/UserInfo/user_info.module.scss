@@ -1,0 +1,77 @@
+@import "Styles/_variables.scss";
+
+.background {
+    background-color: $shadow-color;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    .body {
+        background-color: $light-color;
+        width: 500px;
+        border-radius: 10px;
+        padding: 20px;
+        &__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            &__title {
+                font-size: 24px;
+                margin: 10px;
+                padding: 0;
+            }
+            &__close {
+                cursor: pointer;
+                &::after {
+                    content: "❌";
+                }
+            }
+        }
+        .inputs {
+            padding: 10px;
+            .holder {
+                display: flex;
+                flex-direction: column;
+                margin: 10px 0px;
+                width: 100%;
+                align-items: center;
+                &__label {
+                    margin-left: 10px;
+                    margin-bottom: 5px;
+                    width: 100%;
+                    &::after {
+                        content: ":";
+                    }
+                }
+                &__input {
+                    padding: 8px;
+                    font-size: 16px;
+                    border-radius: 5px;
+                    border: 1px solid gray;
+                    width: calc(100%);
+                }
+                &__button {
+                    border: none;
+                    color: white;
+                    font-size: 16px;
+                    text-transform: uppercase;
+                    background-color: $primary-color;
+                    margin-top: 30px;
+                    padding: 10px;
+                    width: 50%;
+                    cursor: pointer;
+                    border-radius: 5px;
+                    transition: 0.2s;
+                    &:hover, &:focus {
+                        opacity: 0.9;
+                    }
+                }
+            }
+        }
+    }
+}
