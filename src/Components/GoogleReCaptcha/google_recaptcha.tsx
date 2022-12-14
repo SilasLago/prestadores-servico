@@ -1,5 +1,7 @@
+import classNames from "classnames";
 import { useEffect } from "react";
 import { appendScript } from "Utils/appendScript";
+import styles from "./google_recaptcha.module.scss";
 
 function GoogleRecaptcha() {
 
@@ -8,7 +10,10 @@ function GoogleRecaptcha() {
 
   useEffect(() => appendScript(urlRecaptchScript));
 
-  return <div className="g-recaptcha" data-sitekey={siteKey}></div>
+  return <div className={classNames({
+    "g-recaptcha": true,
+    [styles.recaptcha]: true,
+  })} data-sitekey={siteKey}></div>
 }
 
 export default GoogleRecaptcha;
