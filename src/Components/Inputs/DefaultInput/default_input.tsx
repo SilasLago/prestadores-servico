@@ -22,6 +22,7 @@ function DefaultInput({ id, className, type, placeholder, title, label, min, max
       <label htmlFor={id} className={styles.holder__label}>
         {label}
       </label>
+
       {type !== "select" ? (
         <input 
           id={id}
@@ -55,6 +56,7 @@ function DefaultInput({ id, className, type, placeholder, title, label, min, max
           ))}
         </select>
       )}
+      
     </div>
   )
 }

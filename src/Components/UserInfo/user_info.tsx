@@ -4,6 +4,7 @@ import { FormEvent, MouseEventHandler, useEffect, useState } from "react";
 import DefaultInput from "Components/Inputs/DefaultInput/default_input";
 import DefaultButton from "Components/Inputs/DefaultButton/default_button";
 import { useDesapear } from "Hooks/useDesapear/useDesapear";
+import { branchs, departments, offices } from "Utils/datas";
 
 interface IUserInfo {
   onClose: MouseEventHandler<HTMLDivElement>
@@ -30,9 +31,9 @@ function UserInfo({ onClose }: IUserInfo) {
 
   const inputs: Array<UserInput> = [
     new UserInput(name, setName, "name", "text", "Nome", "Nome", "Nome"),
-    new UserInput(department, setDepartment, "department", "text", "Departamento", "Departamento", "Departamento"),
-    new UserInput(office, setOffice, "office", "text", "Cargo", "Cargo", "Cargo"),
-    new UserInput(branch, setBranch, "branch", "text", "Filial", "Filial", "Filial"),
+    new UserInput(department, setDepartment, "department", "select", "Departamento", "Departamento", "Departamento", departments),
+    new UserInput(office, setOffice, "office", "select", "Cargo", "Cargo", "Cargo", offices),
+    new UserInput(branch, setBranch, "branch", "select", "Filial", "Filial", "Filial", branchs),
     new UserInput(phone, setPhone, "phone", "text", "Telefone", "Telefone", "Telefone"),
     new UserInput(email, setEmail, "email", "text", "Email", "Email", "Email"),
   ]
