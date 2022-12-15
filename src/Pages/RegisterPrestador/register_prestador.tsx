@@ -2,7 +2,7 @@ import DefaultButton from "Components/Inputs/DefaultButton/default_button";
 import DefaultInput from "Components/Inputs/DefaultInput/default_input";
 import { DefaultInputData } from "Components/Inputs/DefaultInput/utils/classes";
 import { useState } from "react";
-import { formatCPF, formatPhone } from "Utils/formatters";
+import { formatCPF, formatPhone, formatRG } from "Utils/formatters";
 import styles from "./register_prestador.module.scss";
 
 function RegisterPrestador() {
@@ -28,25 +28,21 @@ function RegisterPrestador() {
     new DefaultInputData(qualification, setQualification, "qualification", "text", "Formação", "Formação", "Formação"),
     new DefaultInputData(serviceType, setServiceType, "serviceType", "text", "Tipo de serviço", "Tipo de serviço", "Tipo de serviço"),
     new DefaultInputData(price, setPrice, "price", "number", "Preço", "Preço", "Preço"),
-    new DefaultInputData(rg, setRg, "rg", "number", "RG", "RG", "RG"),
+    new DefaultInputData(rg, setFormattedRg, "rg", "text", "RG", "RG", "RG"),
     new DefaultInputData(cpf, setFormattedCpf, "cpf", "text", "CPF", "CPF", "CPF"),
     new DefaultInputData(contract, setContract, "contract", "text", "Contrato", "Contrato", "Contrato"),
   ]
 
   function setFormattedCpf(cpf: string) {
-    const cpfNumbers = cpf.replaceAll(".", "")
-    .replaceAll("-", "")
-    .replaceAll("x", "");
-    setCpf(formatCPF(cpfNumbers));
+    setCpf(formatCPF(cpf, "x", ".", "-"));
   }
 
   function setFormattedPhone(phone: string) {
-    const phoneNumbers = phone.replaceAll("x", "")
-    .replaceAll(" ", "")
-    .replaceAll("(", "")
-    .replaceAll(")", "")
-    .replaceAll("-", "");
-    setPhone(formatPhone(phoneNumbers));
+    setPhone(formatPhone(phone, "(", ")", " ", "-", "x"));
+  }
+
+  function setFormattedRg(rg: string) {
+    setRg(formatRG(rg, ".", "x", "-"));
   }
 
   return (
