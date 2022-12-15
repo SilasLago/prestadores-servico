@@ -18,7 +18,7 @@ function Login() {
     const token = "E4QW65E4QW98AS41FAS4AS31279DQA1QW3";
     const userId = 40;
     auth.authenticate(token, userId);
-    navigate("/home", { replace: true });
+    navigate("/register/prestadores", { replace: true });
   }
 
   useEffect(() => {

@@ -1,0 +1,23 @@
+@import "Styles/_variables.scss";
+
+.background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    .form {
+        background-color: $light-color;
+        
+        box-shadow: 2px 2px 5px $shadow-color;
+
+        width: 700px;
+        padding: 20px;
+        border-radius: 10px;
+        &__title {
+            font-size: 24px;
+            font-weight: normal;
+            padding: 10px;
+            margin: 0px;
+        }
+    }
+}

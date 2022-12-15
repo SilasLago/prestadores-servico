@@ -1,9 +1,9 @@
 import Table from "Components/Table/table";
 import { Line } from "Components/Table/utils/classes";
 import { useState } from "react";
-import styles from "./main.module.scss";
+import styles from "./prestadores.module.scss";
 
-function Main() {
+function Prestadores() {
 
   const [lines, setLines] = useState<Array<Line>>([
     new Line().defineValue("IMG").defineValue("João Cleber Silva").defineValue("9 / 10").defineValue("R$ 150,55").defineValue(""),
@@ -28,4 +28,4 @@ function Main() {
   )
 }
 
-export default Main;
+export default Prestadores;

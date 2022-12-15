@@ -11,12 +11,13 @@ interface IDefaultInput {
   title: string,
   label: string,
   id: string,
+  required?: boolean,
   className?: string,
   min?: number,
   max?: number,
   data?: Array<SelectDataType>
 }
-function DefaultInput({ id, className, type, placeholder, title, label, min, max, value, onChange, data }: IDefaultInput) {
+function DefaultInput({ id, className, type, placeholder, title, label, min, max, value, onChange, data, required = true }: IDefaultInput) {
   return (
     <div className={styles.holder}>
       <label htmlFor={id} className={styles.holder__label}>
@@ -35,6 +36,7 @@ function DefaultInput({ id, className, type, placeholder, title, label, min, max
           title={title}
           min={min}
           max={max}
+          required={required}
           value={value}
           onChange={e => onChange ? onChange(e.target.value) : undefined}
         />
@@ -43,6 +45,7 @@ function DefaultInput({ id, className, type, placeholder, title, label, min, max
           id={id}
           title={title}
           value={value}
+          required={true}
           onChange={e => onChange ? onChange(e.target.value) : undefined}
           className={classNames({
             [className ? className : ""]: true,

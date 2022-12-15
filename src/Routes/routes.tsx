@@ -5,10 +5,11 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import Main from "../Pages/Main/main";
+import Prestadores from "../Pages/Prestadores/prestadores";
 import Login from "Pages/Login/login";
 import AuthWrapper from "Components/AuthWrapper/auth_wrapper";
 import BasePage from "Components/BasePage/base_page";
+import RegisterPrestador from "Pages/RegisterPrestador/register_prestador";
 
 function PagesRoutes() {
   return (
@@ -20,7 +21,12 @@ function PagesRoutes() {
             <Route path="/" element={<Login />} />
             <Route element={ <AuthWrapper /> }>
               <Route element={ <BasePage /> }>
-                <Route path="/home" element={ <Main /> } />
+                <Route path="/list">
+                  <Route path="prestadores" element={ <Prestadores /> } />
+                </Route>
+                <Route path="/register">
+                  <Route path="prestadores" element={ <RegisterPrestador /> } />
+                </Route>
               </Route>
             </Route>
           </Routes>
