@@ -1,6 +1,9 @@
 import { User, UserInput } from "./utils/classes";
 import styles from "./user_info.module.scss";
-import { MouseEventHandler, useState } from "react";
+import { FormEvent, MouseEventHandler, useEffect, useState } from "react";
+import DefaultInput from "Components/Inputs/DefaultInput/default_input";
+import DefaultButton from "Components/Inputs/DefaultButton/default_button";
+import { useDesapear } from "Hooks/useDesapear/useDesapear";
 
 interface IUserInfo {
   onClose: MouseEventHandler<HTMLDivElement>
@@ -23,14 +26,34 @@ function UserInfo({ onClose }: IUserInfo) {
   const [phone, setPhone] = useState<string>(curUser.telefone);
   const [email, setEmail] = useState<string>(curUser.email);
 
+  const desapear = useDesapear();
+
   const inputs: Array<UserInput> = [
-    new UserInput(name, setName, "text", "Nome", "Nome", "Nome"),
-    new UserInput(department, setDepartment, "text", "Departamento", "Departamento", "Departamento"),
-    new UserInput(office, setOffice, "text", "Cargo", "Cargo", "Cargo"),
-    new UserInput(branch, setBranch, "text", "Filial", "Filial", "Filial"),
-    new UserInput(phone, setPhone, "text", "Telefone", "Telefone", "Telefone"),
-    new UserInput(email, setEmail, "text", "Email", "Email", "Email"),
+    new UserInput(name, setName, "name", "text", "Nome", "Nome", "Nome"),
+    new UserInput(department, setDepartment, "department", "text", "Departamento", "Departamento", "Departamento"),
+    new UserInput(office, setOffice, "office", "text", "Cargo", "Cargo", "Cargo"),
+    new UserInput(branch, setBranch, "branch", "text", "Filial", "Filial", "Filial"),
+    new UserInput(phone, setPhone, "phone", "text", "Telefone", "Telefone", "Telefone"),
+    new UserInput(email, setEmail, "email", "text", "Email", "Email", "Email"),
   ]
+
+  function onFormSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const userDataUpdated = new User(name, department, office, branch, phone, email);
+    console.log(userDataUpdated);
+    alert("Usuário atualizado com sucesso!");
+    CloseUserInfo();
+  }
+
+  function CloseUserInfo() {
+    desapear.update(false);
+    const event: React.MouseEvent<HTMLDivElement, MouseEvent> = {} as React.MouseEvent<HTMLDivElement, MouseEvent>;
+    onClose(event);
+  }
+
+  useEffect(() => {
+    desapear.update(true);
+  })
 
   return (
     <div className={styles.background}>
@@ -39,26 +62,26 @@ function UserInfo({ onClose }: IUserInfo) {
           <h1 className={styles.body__header__title}>
             Informações de usuário
           </h1>
-          <div className={styles.body__header__close} onClick={onClose} />
+          <div className={styles.body__header__close} onClick={CloseUserInfo} />
         </div>
-        <form className={styles.inputs}>
-          {inputs.map(input => (
-            <div className={styles.holder}>
-              <label className={styles.holder__label}>{input.label}</label>
-              <input
-                className={styles.holder__input}
-                type={input.type}
-                value={input.value}
-                onChange={e => input.onChange(e.target.value)}
-                title={input.title}
-                placeholder={input.placeholder}
-              />
-            </div>
+        <hr />
+        <form onSubmit={onFormSubmit} className={styles.inputs}>
+          {inputs.map(({ id, type, title, placeholder, label, value, onChange }) => (
+            <DefaultInput
+              key={id}
+              id={id}
+              type={type}
+              title={title}
+              placeholder={placeholder}
+              label={label}
+              value={value}
+              onChange={onChange}
+            />
           ))}
           <div className={styles.holder}>
-            <button className={styles.holder__button}>
-              Salvar
-            </button>
+            <div className={styles.holder__button}>
+              <DefaultButton type="submit" label="Salvar" variant="red" />
+            </div>
           </div>
         </form>
         <hr />

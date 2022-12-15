@@ -4,9 +4,8 @@
     background-color: $dark-color;
     width: 250px;
     height: 100vh;
+    top: 155px;
     position: fixed;
-    top: 156px;
-    z-index: 0;
     &--closed {
         width: 0px;
     }
@@ -24,13 +23,13 @@
         height: $button-size;
         right: -$button-size;
         width: $button-size;
-        border-top-right-radius: $button-size / 2;
-        border-bottom-right-radius: $button-size / 2;
+        border-top-right-radius: calc($button-size / 2);
+        border-bottom-right-radius: calc($button-size / 2);
     }
 }
 
 @media only screen and (max-width: $break-sm) {
     .menu {
-        top: 116px;
+        top: 122px;
     }
 }

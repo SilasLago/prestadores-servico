@@ -16,7 +16,7 @@
     border: 1px solid gray;
 }
 
-.lines:hover {
+.lines:hover, .lines:focus {
     background-color: $primary-color;
     color: white;
 }
@@ -25,7 +25,11 @@
     color: white;
 }
 
-a:hover {
+.lines:focus > .data > a {
+    color: white;
+}
+
+a:hover, a:focus {
     color: #d6d6d6 !important;
 }
 

@@ -23,48 +23,8 @@
             padding: 0px;
             margin: 0px;
         }
-        &__container {
-            margin: 10px 10px 10px 0px;
-            display: flex;
-            width: 100%;
-            flex-direction: column;
-            &__label {
-                margin-bottom: 5px;
-                margin-left: 5px;
-                &::after {
-                    content: ":";
-                }
-            }
-            &__input {
-                margin: 0px;
-                width: calc(100% - 20px);
-                font-size: 16px;
-                padding: 10px 10px;
-                border: 1px solid gray;
-                border-radius: 5px;
-                background: linear-gradient(to bottom, white 80%, #dbdbdb);
-                &::placeholder {
-                    padding: 15px;
-                    font-size: 14px;
-                }
-                &:hover {
-                    background: linear-gradient(to bottom, white 50%, #d1d1d1);
-                    outline: 1px solid $primary-color;
-                }
-            }
-            &__button {
-                padding: 10px;
-                width: 50%;
-                cursor: pointer;
-                border-radius: 5px;
-                border: 1px solid gray;
-                color: $button-color-contrast;
-                background: linear-gradient(to bottom, white 80%, #dbdbdb);
-                &:hover {
-                    background: linear-gradient(to bottom, white 50%, #d1d1d1);
-                    outline: 1px solid $primary-color;
-                }
-            }
+        .button {
+            width: 50%;
         }
     }
 }
@@ -73,6 +33,9 @@
     .background {
         .form {
             width: 100%;
+            .button {
+                width: 100%;
+            }
         }
     }
 }

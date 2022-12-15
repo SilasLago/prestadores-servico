@@ -1,8 +1,10 @@
+import DefaultInput from "Components/Inputs/DefaultInput/default_input";
 import GoogleRecaptcha from "Components/GoogleReCaptcha/google_recaptcha";
 import { useAuth } from "Hooks/useAuth/use_auth";
 import { FormEvent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./login.module.scss";
+import DefaultButton from "Components/Inputs/DefaultButton/default_button";
 
 function Login() {
 
@@ -29,39 +31,27 @@ function Login() {
         <h1 className={styles.form__title}>
           Acesso ao sistema
         </h1>
-        <div className={styles.form__container}>
-          <label className={styles.form__container__label}>
-            Usuário
-          </label>
-          <input
-            className={styles.form__container__input}
-            placeholder="Usuário"
-            title="Usuário"
-            type="text"
-            value={userLogin}
-            onChange={e => setUserLogin(e.target.value)}
-          />
-        </div>
-        <div className={styles.form__container}>
-          <label className={styles.form__container__label}>
-            Senha
-          </label>
-          <input
-            placeholder="Senha"
-            title="Senha"
-            type="password"
-            className={styles.form__container__input}
-            value={userPassword}
-            onChange={e => setUserPassword(e.target.value)}
-          />
-        </div>
-        <div>
-          <GoogleRecaptcha />
-        </div>
-        <div className={styles.form__container}>
-          <button className={styles.form__container__button} type="submit">
-            Entrar
-          </button>
+        <DefaultInput
+          id="user"
+          label="Usuário"
+          placeholder="Usuário"
+          title="Usuário"
+          type="text"
+          onChange={setUserLogin}
+          value={userLogin}
+        />
+        <DefaultInput
+          id="password"
+          label="Senha"
+          placeholder="Senha"
+          title="Senha"
+          type="password"
+          onChange={setUserPassword}
+          value={userPassword}
+        />
+        <GoogleRecaptcha />
+        <div className={styles.button}>
+          <DefaultButton label="Entrar" type="submit" />
         </div>
         <div className={styles.form__container}>
           <Link to="password-recovery">

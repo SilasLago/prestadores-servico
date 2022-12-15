@@ -16,6 +16,7 @@ export class UserInput {
     constructor(
         public readonly value: any,
         public readonly onChange: React.Dispatch<React.SetStateAction<any>>,
+        public readonly id: string,
         public readonly type: string,
         public readonly title: string,
         public readonly placeholder: string,

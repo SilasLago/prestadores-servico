@@ -34,7 +34,7 @@
     &__img {
         padding-right: 20px;
     }
-    &:hover {
+    &:hover, &:focus {
         cursor: pointer;
     }
 }
@@ -46,7 +46,7 @@
         align-items: center;
         color: white;
         font-size: 14px;
-        &:hover {
+        &:hover, &:focus {
             cursor: pointer;
             background-color: $button-selected-color;
         }

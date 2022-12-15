@@ -19,7 +19,7 @@
     @include button-base($primary-color, 1px solid $primary-color, transparent);
 }
 
-.pages-button:hover {
+.pages-button:hover, .pages-button:focus {
     background-color: $primary-color;
     color: white;
 }
