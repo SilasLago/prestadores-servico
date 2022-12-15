@@ -66,7 +66,7 @@ function UserInfo({ onClose }: IUserInfo) {
         </div>
         <hr />
         <form onSubmit={onFormSubmit} className={styles.inputs}>
-          {inputs.map(({ id, type, title, placeholder, label, value, onChange }) => (
+          {inputs.map(({ id, type, title, placeholder, label, value, onChange, data }) => (
             <DefaultInput
               key={id}
               id={id}
@@ -76,6 +76,7 @@ function UserInfo({ onClose }: IUserInfo) {
               label={label}
               value={value}
               onChange={onChange}
+              data={data}
             />
           ))}
           <div className={styles.holder}>
