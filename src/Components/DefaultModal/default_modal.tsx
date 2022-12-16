@@ -1,12 +1,14 @@
 import classNames from "classnames";
-import styles from "./default_form.module.scss";
+import { MouseEventHandler } from "react";
+import styles from "./default_modal.module.scss";
 
 interface IDefaultModal {
   size: "sm" | "md" | "lg" | "xl",
   title: string,
+  onClose: MouseEventHandler<HTMLDivElement>,
   children: JSX.Element
 }
-function DefaultModal({ size, title, children }: IDefaultModal) {
+function DefaultModal({ size, title, children, onClose }: IDefaultModal) {
   return (
     <div className={styles.background}>
       <section className={classNames({
@@ -20,7 +22,7 @@ function DefaultModal({ size, title, children }: IDefaultModal) {
           <h1 className={styles.modal__header__title}>
             {title}
           </h1>
-          <div className={styles.modal__header__close} />
+          <div className={styles.modal__header__close} onClick={onClose} />
         </div>
         <hr />
         <div className={styles.modal__body}>

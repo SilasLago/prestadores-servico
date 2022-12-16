@@ -1,53 +1,14 @@
-@import "Styles/_variables.scss";
-
-.background {
-    background-color: $shadow-color;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .body {
-        background-color: $light-color;
-        width: 500px;
-        border-radius: 10px;
-        padding: 20px;
-        max-width: 100vw;
-        max-height: calc(100vh - 10px);
-        overflow-y: scroll;
-        position: relative;
-        &__header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            &__title {
-                font-size: 24px;
-                margin: 10px;
-                padding: 0;
-            }
-            &__close {
-                cursor: pointer;
-                &::after {
-                    content: "❌";
-                }
-            }
-        }
-        .inputs {
-            padding: 10px;
-            .holder {
-                display: flex;
-                justify-content: center;
-                padding: 0px;
-                margin: 0px;
-                &__button {
-                    padding: 0px;
-                    margin: 0px;
-                    width: 50%;
-                }
-            }
+.inputs {
+    padding: 10px;
+    .holder {
+        display: flex;
+        justify-content: center;
+        padding: 0px;
+        margin: 0px;
+        &__button {
+            padding: 0px;
+            margin: 0px;
+            width: 50%;
         }
     }
 }

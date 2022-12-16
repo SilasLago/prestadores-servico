@@ -6,6 +6,7 @@ import DefaultButton from "Components/Inputs/DefaultButton/default_button";
 import { useDesapear } from "Hooks/useDesapear/useDesapear";
 import { branchs, departments, offices } from "Utils/datas";
 import { DefaultInputData } from "Components/Inputs/DefaultInput/utils/classes";
+import DefaultModal from "Components/DefaultModal/default_modal";
 
 interface IUserInfo {
   onClose: MouseEventHandler<HTMLDivElement>
@@ -44,10 +45,10 @@ function UserInfo({ onClose }: IUserInfo) {
     const userDataUpdated = new User(name, department, office, branch, phone, email);
     console.log(userDataUpdated);
     alert("Usuário atualizado com sucesso!");
-    CloseUserInfo();
+    closeUserInfo();
   }
 
-  function CloseUserInfo() {
+  function closeUserInfo() {
     desapear.update(false);
     const event: React.MouseEvent<HTMLDivElement, MouseEvent> = {} as React.MouseEvent<HTMLDivElement, MouseEvent>;
     onClose(event);
@@ -58,38 +59,32 @@ function UserInfo({ onClose }: IUserInfo) {
   })
 
   return (
-    <div className={styles.background}>
-      <section className={styles.body}>
-        <div className={styles.body__header}>
-          <h1 className={styles.body__header__title}>
-            Informações de usuário
-          </h1>
-          <div className={styles.body__header__close} onClick={CloseUserInfo} />
-        </div>
-        <hr />
-        <form onSubmit={onFormSubmit} className={styles.inputs}>
-          {inputs.map(({ id, type, title, placeholder, label, value, onChange, data }) => (
-            <DefaultInput
-              key={id}
-              id={id}
-              type={type}
-              title={title}
-              placeholder={placeholder}
-              label={label}
-              value={value}
-              onChange={onChange}
-              data={data}
-            />
-          ))}
-          <div className={styles.holder}>
-            <div className={styles.holder__button}>
-              <DefaultButton type="submit" label="Salvar" variant="red" />
-            </div>
+    <DefaultModal
+      size="sm"
+      title="Informações de usuário"
+      onClose={closeUserInfo}
+    >
+      <form onSubmit={onFormSubmit} className={styles.inputs}>
+        {inputs.map(({ id, type, title, placeholder, label, value, onChange, data }) => (
+          <DefaultInput
+            key={id}
+            id={id}
+            type={type}
+            title={title}
+            placeholder={placeholder}
+            label={label}
+            value={value}
+            onChange={onChange}
+            data={data}
+          />
+        ))}
+        <div className={styles.holder}>
+          <div className={styles.holder__button}>
+            <DefaultButton type="submit" label="Salvar" variant="red" />
           </div>
-        </form>
-        <hr />
-      </section>
-    </div>
+        </div>
+      </form>
+    </DefaultModal>
   )
 }
 

@@ -1,7 +1,7 @@
 function DeactivatePrestador() {
   return (
     <section>
-      dasjidasji
+      11
     </section>
   )
 }
