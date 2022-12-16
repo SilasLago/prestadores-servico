@@ -1,6 +1,7 @@
 export class Prestador {
 
     public readonly contrato: string | undefined;
+    public readonly id: number | undefined;
 
     constructor(
         public readonly nome: string,
@@ -14,10 +15,14 @@ export class Prestador {
         public readonly avaliacao: number,
         public readonly rg: string,
         public readonly cpf: string,
-        contrato?: string
+        contrato?: string,
+        id?: number,
     ) {
         if(contrato) {
             this.contrato = contrato;
+        }
+        if(id) {
+            this.id = id;
         }
     }
 

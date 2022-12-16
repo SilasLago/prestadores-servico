@@ -18,6 +18,10 @@
     justify-content: center;
     align-items: center;
     .info {
+        position: relative;
+        top: 0px;
+        max-height: calc(100vh - 100px);
+        overflow-y: scroll;
         background-color: $light-color;
         padding: 20px;
         border-radius: 20px;

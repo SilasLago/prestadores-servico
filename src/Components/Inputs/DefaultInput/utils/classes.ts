@@ -19,7 +19,7 @@ export class DefaultInputData {
         if(data) {
             this.data = data;
         }
-        if(required) {
+        if(required !== undefined) {
             this.required = required;
         }
     }

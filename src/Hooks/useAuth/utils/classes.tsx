@@ -1,8 +1,8 @@
 export class AuthData {
 
     constructor(
-        private token: string | null,
-        private userId: number | null,
+        public readonly token: string | null,
+        public readonly userId: number | null,
         public authenticate: (token: string, userId: number) => void,
         public deauthenticate: () => void
     ) {}

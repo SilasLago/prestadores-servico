@@ -1,6 +1,8 @@
+import React, { SetStateAction } from "react";
+
 export function cleanString(target: string, ...chars: Array<string>): string {
     let targetCleaned = target;
-    for(const char of chars) {
+    for (const char of chars) {
         targetCleaned = targetCleaned.replaceAll(char, "");
     }
     return targetCleaned
@@ -17,7 +19,7 @@ export function formatCPF(cpf: string, ...chars: Array<string>): string {
 
 export function formatRG(rg: string, ...chars: Array<string>): string {
     let cleanedRg = cleanString(rg, ...chars);
-    if(!isNaN(parseInt(cleanedRg))) {
+    if (!isNaN(parseInt(cleanedRg))) {
         const placeholder = "xx.xxx.xxx-xx";
         return formatter(placeholder, cleanedRg);
     }
@@ -42,7 +44,7 @@ export function formatPhone(phone: string, ...chars: Array<string>): string {
     return phone;
 }
 
-function formatter(placeholder: string, value: string) {
+function formatter(placeholder: string, value: string): string {
     let index = 0;
     let stepBack = 0;
     const phoneCharsLength = value.length;
@@ -57,4 +59,27 @@ function formatter(placeholder: string, value: string) {
         index++;
     }
     return placeholder;
+}
+
+function typedBackspace(oldValue: string, curValue: string): boolean {
+    return oldValue.length > curValue.length;
+}
+
+function removeLastChar(value: string, ...chars: Array<string>): string {
+    const valueCleaned = cleanString(value, ...chars);
+    return valueCleaned.slice(0, valueCleaned.length - 1);
+}
+
+export function setFormattedValue(
+    oldValue: string, 
+    value: string, 
+    setter: React.Dispatch<SetStateAction<string>>, 
+    formatter: (value: string, ...chars: Array<string>) => string, 
+    ...removeChars: Array<string>
+) {
+    const chars = [...removeChars];
+    if (typedBackspace(oldValue, value)) {
+        value = removeLastChar(value, ...chars);
+    }
+    setter(formatter(value, ...chars));
 }
