@@ -1,3 +1,4 @@
+import DefaultModal from "Components/DefaultModal/default_modal";
 import DefaultButton from "Components/Inputs/DefaultButton/default_button";
 import { Prestador } from "Pages/RegisterPrestador/utils/classes";
 import { useState } from "react";
@@ -22,7 +23,7 @@ function PrestadorInfo({ id, onClose }: IPrestadorInfo) {
     "charliebrown@gmail.com",
     "(41) 9 9999-9999",
     "Administração",
-    "Entragas",
+    "Entregas",
     1500.59,
     10,
     "84.984.984-89",
@@ -35,17 +36,14 @@ function PrestadorInfo({ id, onClose }: IPrestadorInfo) {
     setShowAction(null);
   }
 
-  return (
-    <div className={styles.background}>
-      {showAction === null && (
-        <section className={styles.info}>
-          <div className={styles.info__header}>
-            <h1 className={styles.info__header__title}>
-              Dados do prestador: {curPrestador.nome}
-            </h1>
-            <div className={styles.info__header__close} onClick={onClose} />
-          </div>
-          <hr />
+  return (<>
+    {showAction === null && (
+      <DefaultModal
+        title={`Informações do prestador: ${curPrestador.nome}`}
+        onClose={onClose}
+        size="lg"
+      >
+        <div>
           <UpdatePrestadorForm curPrestador={curPrestador} setCurPrestador={setCurPrestador} />
           <hr />
           <div className={styles.info__actions}>
@@ -59,13 +57,13 @@ function PrestadorInfo({ id, onClose }: IPrestadorInfo) {
               <DefaultButton label="Deletar prestador" type="button" onClick={_ => setShowAction(3)} />
             </div>
           </div>
-        </section>
-      )}
-      {showAction === 0 && <StartService idPrestador={id} onClose={closeActions} />}
-      {showAction === 2 && <DeactivatePrestador />}
-      {showAction === 3 && <DeletePrestador />}
-    </div>
-  )
+        </div>
+      </DefaultModal>
+    )}
+    {showAction === 0 && <StartService idPrestador={id} onClose={closeActions} />}
+    {showAction === 2 && <DeactivatePrestador />}
+    {showAction === 3 && <DeletePrestador />}
+  </>)
 }
 
 export default PrestadorInfo;

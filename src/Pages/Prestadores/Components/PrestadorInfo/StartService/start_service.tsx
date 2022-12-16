@@ -1,3 +1,4 @@
+import DefaultModal from "Components/DefaultModal/default_modal";
 import DefaultButton from "Components/Inputs/DefaultButton/default_button";
 import DefaultInput from "Components/Inputs/DefaultInput/default_input";
 import { DefaultInputData } from "Components/Inputs/DefaultInput/utils/classes";
@@ -23,7 +24,7 @@ function StartService({ idPrestador, onClose }: IStartService) {
     new DefaultInputData(cliente, setCliente, "client", "text", "Cliente", "Cliente", "Cliente"),
     new DefaultInputData(filial, setFilial, "branch", "text", "Filial", "Filial", "Filial"),
     new DefaultInputData(idLocalAtendimento, setIdLocalAtendimento, "local_atendimento", "select", "Local de atendimento", "Local de atendimento", "Local de atendimento", [new SelectDataClass("Nenhum", "Nenhum")]),
-    new DefaultInputData(numeroProcesso, setNumeroProcesso, "processNumber", "number", "Número do Processo", "Número do processo", "Número do processo(se existir)"),
+    new DefaultInputData(numeroProcesso, setNumeroProcesso, "processNumber", "number", "Número do Processo", "Número do processo", "Número do processo(se existir)", undefined, false),
   ]
 
   function postServicoRequest(e: FormEvent<HTMLFormElement>) {
@@ -45,14 +46,11 @@ function StartService({ idPrestador, onClose }: IStartService) {
   }
 
   return (
-    <section className={styles.service}>
-      <div className={styles.service__header}>
-        <h1 className={styles.service__header__title}>
-          Solicitação de serviço
-        </h1>
-        <div className={styles.service__header__close} onClick={onClose} />
-      </div>
-      <hr />
+    <DefaultModal
+      title="Solicitação de serviço"
+      onClose={onClose}
+      size="md"
+    >
       <form onSubmit={postServicoRequest} className={styles.service__body}>
         {inputs.map(({type, label, data, id, onChange, placeholder, required, title, value}) => (
           <DefaultInput
@@ -72,8 +70,7 @@ function StartService({ idPrestador, onClose }: IStartService) {
           label="Iniciar serviço"
         />
       </form>
-      <hr />
-    </section>
+    </DefaultModal>
   )
 }
 
