@@ -11,19 +11,19 @@ interface IDefaultInput {
   title: string,
   label: string,
   id: string,
+  disabled?: boolean,
   required?: boolean,
   className?: string,
   min?: number,
   max?: number,
   data?: Array<SelectDataType>
 }
-function DefaultInput({ id, className, type, placeholder, title, label, min, max, value, onChange, data, required = true }: IDefaultInput) {
+function DefaultInput({ id, className, type, placeholder, title, label, min, max, value, onChange, data, disabled, required = true }: IDefaultInput) {
   return (
     <div className={styles.holder}>
       <label htmlFor={id} className={styles.holder__label}>
         {label}
       </label>
-
       {type !== "select" ? (
         <input 
           id={id}
@@ -38,6 +38,7 @@ function DefaultInput({ id, className, type, placeholder, title, label, min, max
           max={max}
           required={required}
           value={value}
+          disabled={disabled}
           onChange={e => onChange ? onChange(e.target.value) : undefined}
         />
       ) : (
@@ -46,6 +47,7 @@ function DefaultInput({ id, className, type, placeholder, title, label, min, max
           title={title}
           value={value}
           required={true}
+          disabled={disabled}
           onChange={e => onChange ? onChange(e.target.value) : undefined}
           className={classNames({
             [className ? className : ""]: true,
@@ -53,13 +55,12 @@ function DefaultInput({ id, className, type, placeholder, title, label, min, max
           })}
         >
           {data?.map(curOption => (
-            <option value={curOption.value}>
+            <option value={curOption.value} key={curOption.value}>
               {curOption.label}
             </option>
           ))}
         </select>
-      )}
-      
+      )}   
     </div>
   )
 }

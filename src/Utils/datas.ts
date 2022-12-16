@@ -25,7 +25,6 @@ export const states: Array<SelectDataType> = [
     new SelectDataClass("AL", "Alagoas"),
     new SelectDataClass("AP", "Amapá"),
     new SelectDataClass("AM", "Amazonas"),
-    new SelectDataClass("AL", "Alagoas"),
     new SelectDataClass("BA", "Bahia"),
     new SelectDataClass("CE", "Ceará"),
     new SelectDataClass("ES", "Espirito Santo"),

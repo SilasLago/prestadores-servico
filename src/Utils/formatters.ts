@@ -1,4 +1,4 @@
-function cleanString(target: string, ...chars: Array<string>): string {
+export function cleanString(target: string, ...chars: Array<string>): string {
     let targetCleaned = target;
     for(const char of chars) {
         targetCleaned = targetCleaned.replaceAll(char, "");
@@ -18,7 +18,7 @@ export function formatCPF(cpf: string, ...chars: Array<string>): string {
 export function formatRG(rg: string, ...chars: Array<string>): string {
     let cleanedRg = cleanString(rg, ...chars);
     if(!isNaN(parseInt(cleanedRg))) {
-        const placeholder = "xxx.xxx.xxx-xx";
+        const placeholder = "xx.xxx.xxx-xx";
         return formatter(placeholder, cleanedRg);
     }
     return rg;
