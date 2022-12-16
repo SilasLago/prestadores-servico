@@ -1,11 +1,5 @@
 import { SelectDataType } from "interfaces/select_data_type"
-
-class SelectDataClass implements SelectDataType {
-    constructor(
-        public readonly value: any,
-        public readonly label: string,
-    ) {}
-}
+import { SelectDataClass } from "./classes"
 
 export const departments: Array<SelectDataType> = [
     new SelectDataClass("TI", "TI")

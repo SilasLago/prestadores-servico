@@ -1,10 +1,12 @@
+import { SelectDataType } from "interfaces/select_data_type";
+
 export class SideMenuButton {
 
     private _selected: boolean = false;
 
     constructor(
         public readonly name: string,
-        public readonly options: Array<string>,
+        public readonly options: Array<SelectDataType>,
         public readonly img: string,
         selected?: boolean
     ) {

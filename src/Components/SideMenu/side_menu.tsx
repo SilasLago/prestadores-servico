@@ -5,6 +5,7 @@ import servicoImg from "./src/servico.png";
 import SideMenuButtonComponent from "./SideMenuButton/side_menu_button";
 import { useState } from "react";
 import classNames from "classnames";
+import { SelectDataClass } from "Utils/classes";
 
 function SideMenu() {
 
@@ -12,13 +13,19 @@ function SideMenu() {
   const [options, setOptions] = useState<Array<SideMenuButton>>([
     new SideMenuButton(
       "Prestadores",
-      ["Procurar prestadores", "Cadastrar prestador"],
+      [
+        new SelectDataClass("/list/prestadores", "Procurar prestadores"),
+        new SelectDataClass("/register/prestadores", "Cadastrar prestador")
+      ],
       userImg,
       true
     ),
     new SideMenuButton(
       "Serviços",
-      ["Acompanhar serviços", "Serviços finalizados"],
+      [
+        new SelectDataClass("/list/servicos", "Acompanhar serviços"),
+        new SelectDataClass("/list/servicos_finalizados", "Serviços finalizados")
+      ],
       servicoImg
     )
   ]);
@@ -36,17 +43,15 @@ function SideMenu() {
       [styles.menu]: true,
       [styles["menu--closed"]]: !openMenu
     })}>
-      {openMenu && (
-        <div>
-          {options.map(button => (
-            <SideMenuButtonComponent
-              key={button.name}
-              data={button}
-              onClick={() => changeTab(button)}
-            />
-          ))}
-        </div>
-      )}
+      {openMenu && (<>
+        {options.map(button => (
+          <SideMenuButtonComponent
+            key={button.name}
+            data={button}
+            onClick={() => changeTab(button)}
+          />
+        ))}
+      </>)}
       <button 
         className={styles.menu__button}
         onClick={() => setOpenMenu(!openMenu)}

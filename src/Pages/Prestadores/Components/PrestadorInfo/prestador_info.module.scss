@@ -1,0 +1,48 @@
+@import "Styles/_variables.scss";
+
+@mixin define-title($size) {
+    font-size: $size;
+    font-weight: normal;
+    padding: 10px;
+    margin: 0px;
+}
+
+.background {
+    background-color: $shadow-color;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .info {
+        background-color: $light-color;
+        padding: 20px;
+        border-radius: 20px;
+        max-width: 900px;
+        width: 100vw;
+        &__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            &__title {
+                @include define-title(24px);
+            }
+            &__close {
+                &:hover {
+                    cursor: pointer;
+                }
+                &::after {
+                    content: "❌";
+                }
+            }
+        }
+        &__actions {
+            &__title {
+                @include define-title(20px);
+            }   
+        }
+    }
+}

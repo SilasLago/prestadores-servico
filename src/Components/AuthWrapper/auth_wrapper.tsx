@@ -14,9 +14,9 @@ function AuthWrapper() {
     }else if(location.pathname === "/") {
       navigate("/home");
     }
-  })
+  });
 
-  return <Outlet />
+  return <Outlet />;
 }
 
 export default AuthWrapper;

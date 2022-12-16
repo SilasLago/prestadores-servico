@@ -1,5 +1,7 @@
 import classNames from "classnames";
-import { MouseEventHandler, useState } from "react";
+import { SelectDataType } from "interfaces/select_data_type";
+import { MouseEventHandler, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { SideMenuButton } from "../utils/classes";
 import styles from "./side_menu_button.module.scss";
 import optionLineImg from "./src/line.png";
@@ -11,7 +13,14 @@ interface ISideMenuButtonProps {
 
 function SideMenuButtonComponent({ data, onClick }: ISideMenuButtonProps) {
 
-  const [optionSelected, setOptionSelected] = useState<string>(data.options[0]);
+  const [optionSelected, setOptionSelected] = useState<string>(data.options[0].value);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(data.selected && navigate) {
+      navigate(optionSelected);
+    }
+  }, [optionSelected, navigate, data.selected])
 
   return (
     <div>
@@ -37,11 +46,11 @@ function SideMenuButtonComponent({ data, onClick }: ISideMenuButtonProps) {
       </div>
       {data.selected && (
         <div className={styles.options}>
-          {data.options.map((option: string) => (
+          {data.options.map((option: SelectDataType) => (
             <div className={classNames({
               [styles.options__option]: true,
-              [styles["options__option--selected"]]: optionSelected === option,
-            })} onClick={() => setOptionSelected(option)} key={option}>
+              [styles["options__option--selected"]]: optionSelected === option.value,
+            })} onClick={() => setOptionSelected(option.value)} key={option.value}>
               <div className={styles.options__option__img}>
                 <img
                   src={optionLineImg}
@@ -49,7 +58,7 @@ function SideMenuButtonComponent({ data, onClick }: ISideMenuButtonProps) {
                 />
               </div>
               <div className={styles.options__option__name}>
-                {option}
+                {option.label}
               </div>
             </div>
           ))}

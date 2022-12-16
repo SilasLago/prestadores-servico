@@ -10,6 +10,8 @@ import Login from "Pages/Login/login";
 import AuthWrapper from "Components/AuthWrapper/auth_wrapper";
 import BasePage from "Components/BasePage/base_page";
 import RegisterPrestador from "Pages/RegisterPrestador/register_prestador";
+import Servicos from "Pages/Servicos/servicos";
+import ServicosFinalizados from "Pages/ServicosFinalizados/servicos_finalizados";
 
 function PagesRoutes() {
   return (
@@ -23,6 +25,8 @@ function PagesRoutes() {
               <Route element={ <BasePage /> }>
                 <Route path="/list">
                   <Route path="prestadores" element={ <Prestadores /> } />
+                  <Route path="servicos" element={ <Servicos /> } />
+                  <Route path="servicos_finalizados" element={ <ServicosFinalizados /> } />
                 </Route>
                 <Route path="/register">
                   <Route path="prestadores" element={ <RegisterPrestador /> } />
