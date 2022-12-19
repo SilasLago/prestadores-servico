@@ -2,7 +2,13 @@ import { SelectDataType } from "interfaces/select_data_type"
 import { SelectDataClass } from "./classes"
 
 export const departments: Array<SelectDataType> = [
-    new SelectDataClass("TI", "TI")
+    new SelectDataClass("Aprovação", "Aprovação"),
+    new SelectDataClass("Diretoria", "Diretoria"),
+    new SelectDataClass("Filial SP", "Filial SP"),
+    new SelectDataClass("Gestão Patrimonial", "Gestão Patrimonial"),
+    new SelectDataClass("Licenciamento", "Licenciamento"),
+    new SelectDataClass("Projetos", "Projetos"),
+    new SelectDataClass("Registrário", "Registrário"),
 ]
 
 export const offices: Array<SelectDataType> = [

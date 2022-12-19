@@ -1,11 +1,16 @@
 import DefaultModal from "Components/DefaultModal/default_modal";
+import { User } from "Components/Header/Components/UserInfo/utils/classes";
 import DefaultButton from "Components/Inputs/DefaultButton/default_button";
 import DefaultInput from "Components/Inputs/DefaultInput/default_input";
 import { DefaultInputData } from "Components/Inputs/DefaultInput/utils/classes";
 import { useAuth } from "Hooks/useAuth/use_auth";
 import { Servico } from "Pages/Prestadores/Components/PrestadorInfo/Components/StartService/utils/classes";
+import { Prestador } from "Pages/RegisterPrestador/utils/classes";
 import { FormEvent, MouseEventHandler, useState } from "react";
 import { RG } from "./utils/classes";
+import { createRg } from "./utils/create_rg";
+import * as XLSX from "xlsx";
+import { goalTypesData, requestTypesData } from "./utils/datas";
 
 interface IRGEmission {
   onClose: MouseEventHandler<HTMLDivElement>;
@@ -18,8 +23,6 @@ function RGEmission({ onClose, servico }: IRGEmission) {
   const [finalidade, setFinalidade] = useState<string>("");
   const [descricaoServico, setDescricaoServico] = useState<string>("");
   const [numeroProcesso, setNumeroProcesso] = useState<string>("");
-  const [rgPrestador, setRgPrestador] = useState<string>("");
-  const [cpfPrestador, setCpfPrestador] = useState<string>("");
   const [bancoPrestador, setBancoPrestador] = useState<string>("");
   const [agenciaPrestador, setAgenciaPrestador] = useState<string>("");
   const [contaPrestador, setContaPrestador] = useState<string>("");
@@ -28,26 +31,28 @@ function RGEmission({ onClose, servico }: IRGEmission) {
   const [valor, setValor] = useState<number>(0);
 
   const inputs: Array<DefaultInputData> = [
-    new DefaultInputData(finalidade, setFinalidade, "goal", "text", "Finalidade", "Finalidade", "Finalidade"),
+    new DefaultInputData(finalidade, setFinalidade, "goal", "select", "Finalidade", "Finalidade", "Finalidade", goalTypesData),
     new DefaultInputData(numeroProcesso, setNumeroProcesso, "processNumber", "text", "Número do processo", "Número do processo", "Número do processo(se existir)"),
-    new DefaultInputData(rgPrestador, setRgPrestador, "rgPrestador", "text", "RG", "RG", "RG"),
-    new DefaultInputData(cpfPrestador, setCpfPrestador, "cpfPrestador", "text", "CPF", "CPF", "CPF"),
     new DefaultInputData(bancoPrestador, setBancoPrestador, "bancoPrestador", "text", "Banco", "Banco", "Banco"),
     new DefaultInputData(agenciaPrestador, setAgenciaPrestador, "agenciaPrestador", "number", "Agência", "Agência", "Agência"),
     new DefaultInputData(contaPrestador, setContaPrestador, "contaPrestador", "number", "Conta", "Conta", "Conta"),
-    new DefaultInputData(motivoRequisicao, setMotivoRequisicao, "motivoRequisicao", "text", "Motivo da requisição", "Motivo da requisição", "Motivo da requisição"),
+    new DefaultInputData(motivoRequisicao, setMotivoRequisicao, "motivoRequisicao", "select", "Motivo da requisição", "Motivo da requisição", "Motivo da requisição", requestTypesData),
     new DefaultInputData(quantidade, setQuantidade, "quantidade", "number", "Quantidade", "Quantidade", "Quantidade"),
     new DefaultInputData(valor, setValor, "valor", "number", "Valor", "Valor", "Valor"),
     new DefaultInputData(descricaoServico, setDescricaoServico, "serviceDescription", "textarea", "Descrição do serviço", "Descrição do serviço", "Descrição do serviço"),
   ]
   
-  function onFormSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  function onFormSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
 
-    const updatedServico = servico;
+    const user = new User("Silas", "Departamento", "Cargo", "Filial", "48949489", "dkaspkdoas");
+    const prestador = new Prestador("dasdas", "PR", "Curitiba", "KEPWKOEQ@dkaspo.com", "41465465465", "BODKASOP", "kdopaskdopas", 15.90, 10, "ejqwioejqwio", "oekwqopekqwop");
+    const updatedServico: Servico = servico;
     updatedServico.setNumeroProcesso(numeroProcesso);
 
     const rg = new RG(
+      user,
+      prestador,
       updatedServico,
       finalidade,
       descricaoServico,
@@ -59,7 +64,9 @@ function RGEmission({ onClose, servico }: IRGEmission) {
       quantidade,
     );
     
-    console.log(rg, auth.userId);
+    createRg(rg);
+    const file = XLSX.readFile("");
+    console.log(file);
 
     onClose({} as React.MouseEvent<HTMLDivElement, MouseEvent>);
   }
