@@ -5,6 +5,8 @@ export class DefaultInputData {
     public readonly data: Array<SelectDataType> | undefined;
     public readonly required: boolean | undefined;
 
+    private _disabled: boolean = false;
+
     constructor(
         public readonly value: any,
         public readonly onChange: React.Dispatch<React.SetStateAction<any>>,
@@ -15,6 +17,7 @@ export class DefaultInputData {
         public readonly label: string,
         data?: Array<SelectDataType>,
         required?: boolean,
+        disabled?: boolean,
     ) {
         if(data) {
             this.data = data;
@@ -22,6 +25,17 @@ export class DefaultInputData {
         if(required !== undefined) {
             this.required = required;
         }
+        if(disabled) {
+            this._disabled = disabled;
+        }
+    }
+
+    public get disabled() {
+        return this._disabled;
+    }
+
+    public setDisabled(isDisabled: boolean): void {
+        this._disabled = isDisabled;
     }
 
 }

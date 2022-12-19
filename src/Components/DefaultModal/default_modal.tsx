@@ -6,7 +6,7 @@ interface IDefaultModal {
   size: "sm" | "md" | "lg" | "xl",
   title: string,
   onClose: MouseEventHandler<HTMLDivElement>,
-  children: JSX.Element
+  children?: any
 }
 function DefaultModal({ size, title, children, onClose }: IDefaultModal) {
   return (

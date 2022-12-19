@@ -1,0 +1,22 @@
+@import "Styles/_variables.scss";
+
+.body {
+    padding: 20px;
+    font-size: 18px;
+}
+.buttons {
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    justify-content: flex-end;
+    &__button {
+        margin-right: 10px;
+        width: 150px;
+    }
+}
+
+@media only screen and (max-width: $break-sm) {
+    .buttons {
+        justify-content: center;
+    }
+}

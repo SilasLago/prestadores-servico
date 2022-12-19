@@ -121,7 +121,7 @@ const Table = ({
                       [styles.titles]: true,
                       "border text-center": true,
                     })} 
-                    key={`${title}-${index}`}
+                    key={`${title}`}
                   >
                     {title}
                   </th>

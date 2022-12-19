@@ -3,16 +3,16 @@ import DefaultButton from "Components/Inputs/DefaultButton/default_button";
 import DefaultInput from "Components/Inputs/DefaultInput/default_input";
 import { DefaultInputData } from "Components/Inputs/DefaultInput/utils/classes";
 import { useAuth } from "Hooks/useAuth/use_auth";
-import { FormEvent, MouseEventHandler, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { SelectDataClass } from "Utils/classes";
+import { actionsDataContext } from "../../Contexts/prestador_context";
+import { ActionsPrestadorData } from "../../Contexts/prestador_context_class";
 import styles from "./start_service.module.scss";
 import { Servico } from "./utils/classes";
 
-interface IStartService {
-  idPrestador: number,
-  onClose: MouseEventHandler<HTMLDivElement>
-}
-function StartService({ idPrestador, onClose }: IStartService) {
+function StartService() {
+
+  const dependencies = useContext<ActionsPrestadorData>(actionsDataContext);
 
   const auth = useAuth();
   const [idLocalAtendimento, setIdLocalAtendimento] = useState<number>(0);
@@ -31,24 +31,30 @@ function StartService({ idPrestador, onClose }: IStartService) {
     e.preventDefault();
     const analistaId = auth.userId;
     if(analistaId) {
-      const servico = new Servico(
-        idPrestador,
-        analistaId,
-        idLocalAtendimento,
-        cliente,
-        filial,
-        numeroProcesso
-      );
-      console.log(servico);
-      alert("Serviço iniciado com sucesso!");
-      onClose({} as React.MouseEvent<HTMLDivElement, MouseEvent>);
+      if(dependencies.idPrestador) {
+        const servico = new Servico(
+          dependencies.idPrestador,
+          analistaId,
+          idLocalAtendimento,
+          cliente,
+          filial,
+          numeroProcesso
+        );
+        console.log(servico);
+        alert("Serviço iniciado com sucesso!");
+        closeStartService();
+      }
     }
+  }
+
+  function closeStartService() {
+    dependencies.onClose();
   }
 
   return (
     <DefaultModal
       title="Solicitação de serviço"
-      onClose={onClose}
+      onClose={closeStartService}
       size="md"
     >
       <form onSubmit={postServicoRequest} className={styles.service__body}>
@@ -63,6 +69,7 @@ function StartService({ idPrestador, onClose }: IStartService) {
             placeholder={placeholder}
             required={required}
             title={title}
+            key={id}
           />
         ))}
         <DefaultButton

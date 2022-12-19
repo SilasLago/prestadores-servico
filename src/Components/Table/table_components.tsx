@@ -18,7 +18,7 @@ export const RenderTrs = ({ trsData, tableColumnsLength, continueOpen, setMoreIn
       {trsData.length > 0 ? (
         trsData.map((line: Line, index: number) => (
           <Tr
-            key={`${line}-${index}`}
+            key={`${line}`}
             line={line}
             index={index}
             continueOpen={continueOpen}
@@ -75,7 +75,7 @@ const Tr = ({ line, index, continueOpen, moreInfoAbout, setMoreInfoAbout, length
       >
         {line.getValidProperties().map((property: string, index: number) => (
           <td
-            key={`${line.getValue(property)}-${index}`}
+            key={`${line.getValue(property)}`}
             className={classNames({
               "pt-4 pb-4 red-container border text-center": true,
               [styles.data]: true,

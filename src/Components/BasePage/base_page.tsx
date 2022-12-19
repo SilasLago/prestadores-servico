@@ -10,7 +10,9 @@ function BasePage() {
 	return (
 		<section className={styles.content}>
 			{!desapear && <SideMenu />}
-			<Outlet />
+			<div className={styles.content__outlet}>
+				<Outlet />
+			</div>
 		</section>
 	)
 }

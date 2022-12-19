@@ -28,7 +28,7 @@ export class Line {
         return this._aside;
     }
 
-    public defineValue(value: any): Line {
+    public defineValue(value: JSX.Element | string | number): Line {
         Object.defineProperty(this, this.createPropertyKey(), {
             value: value,
             writable: false,

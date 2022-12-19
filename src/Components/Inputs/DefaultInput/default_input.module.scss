@@ -36,5 +36,17 @@
             background: linear-gradient(to bottom, white 50%, #d1d1d1);
             outline: 1px solid $primary-color;
         }
+
+        &:disabled {
+            box-shadow: inset 0px 0px 10px $shadow-color;
+            background: #cccccc;
+            color: black;
+            &::placeholder {
+                color: black;
+            }
+            &:hover {
+                cursor: not-allowed;
+            }
+        }
     }
 }

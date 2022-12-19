@@ -103,6 +103,7 @@ function UpdatePrestadorForm({ curPrestador, setCurPrestador }: IUpdatePrestador
             required={required}
             title={title}
             type={type}
+            key={id}
           />
         ))}
         <DefaultButton label="Atualizar cadastro" type="submit" />

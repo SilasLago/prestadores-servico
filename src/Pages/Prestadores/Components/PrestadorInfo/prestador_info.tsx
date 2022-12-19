@@ -3,11 +3,13 @@ import DefaultButton from "Components/Inputs/DefaultButton/default_button";
 import { Prestador } from "Pages/RegisterPrestador/utils/classes";
 import { useState } from "react";
 import { states } from "Utils/datas";
-import DeactivatePrestador from "./DeactivatePrestador/deactivate_prestador";
-import DeletePrestador from "./DeletePrestador/delete_prestador";
+import DeactivatePrestador from "./Components/DeactivatePrestador/deactivate_prestador";
+import DeletePrestador from "./Components/DeletePrestador/delete_prestador";
 import styles from "./prestador_info.module.scss";
-import StartService from "./StartService/start_service";
-import UpdatePrestadorForm from "./UpdatePrestadorForm/update_prestador_form";
+import StartService from "./Components/StartService/start_service";
+import UpdatePrestadorForm from "./Components/UpdatePrestadorForm/update_prestador_form";
+import { actionsDataContext } from "./Contexts/prestador_context";
+import { ActionsPrestadorData } from "./Contexts/prestador_context_class";
 
 interface IPrestadorInfo {
   id: number,
@@ -36,6 +38,8 @@ function PrestadorInfo({ id, onClose }: IPrestadorInfo) {
     setShowAction(null);
   }
 
+  const actionPrestadorData = new ActionsPrestadorData(closeActions, id);
+
   return (<>
     {showAction === null && (
       <DefaultModal
@@ -60,9 +64,11 @@ function PrestadorInfo({ id, onClose }: IPrestadorInfo) {
         </div>
       </DefaultModal>
     )}
-    {showAction === 0 && <StartService idPrestador={id} onClose={closeActions} />}
-    {showAction === 2 && <DeactivatePrestador />}
-    {showAction === 3 && <DeletePrestador />}
+    <actionsDataContext.Provider value={actionPrestadorData}>
+      {showAction === 0 && <StartService />}
+      {showAction === 2 && <DeactivatePrestador />}
+      {showAction === 3 && <DeletePrestador />}
+    </actionsDataContext.Provider>
   </>)
 }
 
