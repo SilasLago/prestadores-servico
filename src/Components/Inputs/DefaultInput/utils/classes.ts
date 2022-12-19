@@ -11,7 +11,7 @@ export class DefaultInputData {
         public readonly value: any,
         public readonly onChange: React.Dispatch<React.SetStateAction<any>>,
         public readonly id: string,
-        public readonly type: "text" | "number" | "select" | "password" | "email",
+        public readonly type: "text" | "number" | "select" | "password" | "email" | "textarea",
         public readonly title: string,
         public readonly placeholder: string,
         public readonly label: string,

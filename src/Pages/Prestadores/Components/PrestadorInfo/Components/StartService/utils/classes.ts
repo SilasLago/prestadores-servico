@@ -6,6 +6,7 @@ export class Servico {
     constructor(
         public readonly idPrestador: number,
         public readonly idAnalista: number,
+        public readonly tipoServico: string,
         public readonly idLocalAtendimento: number,
         public readonly cliente: string,
         public readonly filial: string,
@@ -18,6 +19,10 @@ export class Servico {
 
     public get numeroProcesso() {
         return this._numeroProcesso;
+    }
+
+    public setNumeroProcesso(numeroProcesso: string) {
+        this._numeroProcesso = numeroProcesso;
     }
 
 }

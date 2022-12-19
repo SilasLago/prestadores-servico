@@ -6,7 +6,7 @@ import styles from "./default_input.module.scss";
 interface IDefaultInput {
   value: any,
   onChange: React.Dispatch<React.SetStateAction<any>>,
-  type: "text" | "number" | "select" | "password" | "email",
+  type: "text" | "number" | "select" | "password" | "email" | "textarea",
   placeholder: string,
   title: string,
   label: string,
@@ -24,7 +24,7 @@ function DefaultInput({ id, className, type, placeholder, title, label, min, max
       <label htmlFor={id} className={styles.holder__label}>
         {label}
       </label>
-      {type !== "select" ? (
+      {type !== "textarea" && type !== "select" && (
         <input 
           id={id}
           className={classNames({
@@ -41,12 +41,13 @@ function DefaultInput({ id, className, type, placeholder, title, label, min, max
           disabled={disabled}
           onChange={e => onChange ? onChange(e.target.value) : undefined}
         />
-      ) : (
+      )}  
+      {type === "select" && (
         <select
           id={id}
           title={title}
           value={value}
-          required={true}
+          required={required}
           disabled={disabled}
           onChange={e => onChange ? onChange(e.target.value) : undefined}
           className={classNames({
@@ -60,7 +61,24 @@ function DefaultInput({ id, className, type, placeholder, title, label, min, max
             </option>
           ))}
         </select>
-      )}   
+      )}
+      {type === "textarea" && (
+        <textarea
+          id={id}
+          title={title}
+          value={value}
+          required={required}
+          placeholder={placeholder}
+          minLength={min}
+          maxLength={max}
+          disabled={disabled}
+          onChange={e => onChange ? onChange(e.target.value) : undefined}
+          className={classNames({
+            [className ? className : ""]: true,
+            [styles.holder__input]: true,
+          })}
+        ></textarea>
+      )} 
     </div>
   )
 }

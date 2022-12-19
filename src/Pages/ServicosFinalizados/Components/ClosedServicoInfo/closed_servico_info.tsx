@@ -9,11 +9,12 @@ interface IClosedServicoInfo {
 }
 function ClosedServicoInfo({ onClose }: IClosedServicoInfo) {
 
-  const servico = new Servico(0, 0, 0, "Bradesco", "1101 - Serra Dourada", "122544485574536");
+  const servico = new Servico(0, 0, "Serviço de vistoria de filial", 0, "Bradesco", "1101 - Serra Dourada", "122544485574536");
 
   const inputs: Array<DefaultInputData> = [
     new DefaultInputData(servico.cliente, falseReactOnChange(), "client", "text", "Cliente", "Cliente", "Cliente", undefined, false, true),
     new DefaultInputData(servico.dataSolicitacao, falseReactOnChange(), "requestDate", "text", "Data solicitação", "Data solicitação", "Data solicitação", undefined, false, true),
+    new DefaultInputData(servico.tipoServico, falseReactOnChange(), "serviceType", "text", "Tipo de serviço", "Tipo de serviço", "Tipo de serviço", undefined, false, true),
     new DefaultInputData(servico.filial, falseReactOnChange(), "branch", "text", "Filial", "Filial", "Filial", undefined, false, true),
     new DefaultInputData(servico.numeroProcesso, falseReactOnChange(), "processNumber", "text", "Número do processo", "Número do processo", "Número do processo", undefined, false, true)
   ]

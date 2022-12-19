@@ -19,10 +19,12 @@ function StartService() {
   const [numeroProcesso, setNumeroProcesso] = useState<string>("");
   const [cliente, setCliente] = useState<string>("");
   const [filial, setFilial] = useState<string>("");
+  const [tipoServico, setTipoServico] = useState<string>("");
 
   const inputs: Array<DefaultInputData> = [
     new DefaultInputData(cliente, setCliente, "client", "text", "Cliente", "Cliente", "Cliente"),
     new DefaultInputData(filial, setFilial, "branch", "text", "Filial", "Filial", "Filial"),
+    new DefaultInputData(tipoServico, setTipoServico, "serviceType", "text", "Tipo de serviço", "Tipo de serviço", "Tipo de serviço"),
     new DefaultInputData(idLocalAtendimento, setIdLocalAtendimento, "local_atendimento", "select", "Local de atendimento", "Local de atendimento", "Local de atendimento", [new SelectDataClass("Nenhum", "Nenhum")]),
     new DefaultInputData(numeroProcesso, setNumeroProcesso, "processNumber", "number", "Número do Processo", "Número do processo", "Número do processo(se existir)", undefined, false),
   ]
@@ -35,6 +37,7 @@ function StartService() {
         const servico = new Servico(
           dependencies.idPrestador,
           analistaId,
+          tipoServico,
           idLocalAtendimento,
           cliente,
           filial,
