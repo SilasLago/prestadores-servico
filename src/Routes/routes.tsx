@@ -5,36 +5,40 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import Prestadores from "../Pages/Prestadores/prestadores";
 import Login from "Pages/Login/login";
-import AuthWrapper from "Components/AuthWrapper/auth_wrapper";
-import BasePage from "Components/BasePage/base_page";
-import RegisterPrestador from "Pages/RegisterPrestador/register_prestador";
-import Servicos from "Pages/Servicos/servicos";
-import ServicosFinalizados from "Pages/ServicosFinalizados/servicos_finalizados";
+import { lazy, Suspense } from "react";
+
+const Prestadores = lazy(() => import("Pages/Prestadores/prestadores"));
+const Servicos = lazy(() => import("Pages/Servicos/servicos"));
+const ServicosFinalizados = lazy(() => import("Pages/ServicosFinalizados/servicos_finalizados"));
+const RegisterPrestador = lazy(() => import("Pages/RegisterPrestador/register_prestador"));
+const AuthWrapper = lazy(() => import("Components/AuthWrapper/auth_wrapper"));
+const BasePage = lazy(() => import("Components/BasePage/base_page"));
 
 function PagesRoutes() {
   return (
     <section>
       <Header />
       <main>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route element={ <AuthWrapper /> }>
-              <Route element={ <BasePage /> }>
-                <Route path="/list">
-                  <Route path="prestadores" element={ <Prestadores /> } />
-                  <Route path="servicos" element={ <Servicos /> } />
-                  <Route path="servicos_finalizados" element={ <ServicosFinalizados /> } />
-                </Route>
-                <Route path="/register">
-                  <Route path="prestadores" element={ <RegisterPrestador /> } />
+        <Suspense fallback={<p>Carregando...</p>}>
+          <Router>
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route element={<AuthWrapper />}>
+                <Route element={<BasePage />}>
+                  <Route path="/list">
+                    <Route path="prestadores" element={<Prestadores />} />
+                    <Route path="servicos" element={<Servicos />} />
+                    <Route path="servicos_finalizados" element={<ServicosFinalizados />} />
+                  </Route>
+                  <Route path="/register">
+                    <Route path="prestadores" element={<RegisterPrestador />} />
+                  </Route>
                 </Route>
               </Route>
-            </Route>
-          </Routes>
-        </Router>
+            </Routes>
+          </Router>
+        </Suspense>
       </main>
       <Footer />
     </section>

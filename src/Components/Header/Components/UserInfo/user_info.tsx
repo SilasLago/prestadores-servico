@@ -4,7 +4,7 @@ import { FormEvent, MouseEventHandler, useEffect, useState } from "react";
 import DefaultInput from "Components/Inputs/DefaultInput/default_input";
 import DefaultButton from "Components/Inputs/DefaultButton/default_button";
 import { useDesapear } from "Hooks/useDesapear/useDesapear";
-import { branchs, departments, offices } from "Utils/datas";
+import { branchs, departments } from "Utils/datas";
 import { DefaultInputData } from "Components/Inputs/DefaultInput/utils/classes";
 import DefaultModal from "Components/DefaultModal/default_modal";
 
@@ -34,7 +34,7 @@ function UserInfo({ onClose }: IUserInfo) {
   const inputs: Array<DefaultInputData> = [
     new DefaultInputData(name, setName, "name", "text", "Nome", "Nome", "Nome"),
     new DefaultInputData(department, setDepartment, "department", "select", "Departamento", "Departamento", "Departamento", departments),
-    new DefaultInputData(office, setOffice, "office", "select", "Cargo", "Cargo", "Cargo", offices),
+    new DefaultInputData(office, setOffice, "office", "text", "Cargo", "Cargo", "Cargo"),
     new DefaultInputData(branch, setBranch, "branch", "select", "Filial", "Filial", "Filial", branchs),
     new DefaultInputData(phone, setPhone, "phone", "text", "Telefone", "Telefone", "Telefone"),
     new DefaultInputData(email, setEmail, "email", "text", "Email", "Email", "Email"),

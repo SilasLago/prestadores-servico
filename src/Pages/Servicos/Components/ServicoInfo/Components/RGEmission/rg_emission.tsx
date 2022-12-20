@@ -9,7 +9,6 @@ import { Prestador } from "Pages/RegisterPrestador/utils/classes";
 import { FormEvent, MouseEventHandler, useState } from "react";
 import { RG } from "./utils/classes";
 import { createRg } from "./utils/create_rg";
-import * as XLSX from "xlsx";
 import { goalTypesData, requestTypesData } from "./utils/datas";
 
 interface IRGEmission {
@@ -20,13 +19,13 @@ function RGEmission({ onClose, servico }: IRGEmission) {
 
   const auth = useAuth();
 
-  const [finalidade, setFinalidade] = useState<string>("");
+  const [finalidade, setFinalidade] = useState<string>(goalTypesData[0].value);
   const [descricaoServico, setDescricaoServico] = useState<string>("");
   const [numeroProcesso, setNumeroProcesso] = useState<string>("");
   const [bancoPrestador, setBancoPrestador] = useState<string>("");
   const [agenciaPrestador, setAgenciaPrestador] = useState<string>("");
   const [contaPrestador, setContaPrestador] = useState<string>("");
-  const [motivoRequisicao, setMotivoRequisicao] = useState<string>("");
+  const [motivoRequisicao, setMotivoRequisicao] = useState<string>(requestTypesData[0].value);
   const [quantidade, setQuantidade] = useState<number>(0);
   const [valor, setValor] = useState<number>(0);
 
@@ -45,8 +44,8 @@ function RGEmission({ onClose, servico }: IRGEmission) {
   function onFormSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const user = new User("Silas", "Departamento", "Cargo", "Filial", "48949489", "dkaspkdoas");
-    const prestador = new Prestador("dasdas", "PR", "Curitiba", "KEPWKOEQ@dkaspo.com", "41465465465", "BODKASOP", "kdopaskdopas", 15.90, 10, "ejqwioejqwio", "oekwqopekqwop");
+    const user = new User("Silas Lago", "TI", "Desenvolvedor de Sistemas", "0000 - Matriz", "41 9 998843974", "juanfsa@live.com");
+    const prestador = new Prestador("Maicon Douglas", "PR", "Curitiba", "jmaicon@gmail.com", "35 9 98554711", "Pedreiro", "Enviar cartas", 15.90, 10, "85.001.551-54", "123.147.159-12");
     const updatedServico: Servico = servico;
     updatedServico.setNumeroProcesso(numeroProcesso);
 
@@ -65,9 +64,7 @@ function RGEmission({ onClose, servico }: IRGEmission) {
     );
     
     createRg(rg);
-    const file = XLSX.readFile("");
-    console.log(file);
-
+      
     onClose({} as React.MouseEvent<HTMLDivElement, MouseEvent>);
   }
 
