@@ -1,6 +1,7 @@
 import DefaultButton from "Components/Inputs/DefaultButton/default_button";
 import DefaultInput from "Components/Inputs/DefaultInput/default_input";
 import { DefaultInputData } from "Components/Inputs/DefaultInput/utils/classes";
+import LocalAtendimentoInput from "Components/Inputs/LocalAtendimentoInput/local_atendimento_input";
 import { Prestador } from "Pages/RegisterPrestador/utils/classes";
 import { FormEvent, SetStateAction, useState } from "react";
 import { PrestadorLocalDeAtendimento } from "Utils/classes";
@@ -25,7 +26,6 @@ function UpdatePrestadorForm({ curPrestador, setCurPrestador }: IUpdatePrestador
   const [newPrestadorGraduation, setNewPrestadorGraduation] = useState<string>(curPrestador.formacao);
   const [newPrestadorServiceType, setNewPrestadorServiceType] = useState<string>(curPrestador.tipoDeServico);
   const [newPrestadorContract, setNewPrestadorContrat] = useState<string | undefined>(curPrestador.contrato);
-
   const [newPrestadorLocaisAtendimento, setNewPrestadorLocaisAtendimento] = useState<Array<PrestadorLocalDeAtendimento>>(curPrestador.locaisAtendimento);
 
   const inputs: Array<DefaultInputData> = [
@@ -111,6 +111,10 @@ function UpdatePrestadorForm({ curPrestador, setCurPrestador }: IUpdatePrestador
             key={id}
           />
         ))}
+        <LocalAtendimentoInput
+          locaisSelecionados={newPrestadorLocaisAtendimento}
+          setLocaisSelecionados={setNewPrestadorLocaisAtendimento}
+        />
         <DefaultButton label="Atualizar cadastro" type="submit" />
       </form>
     </section>

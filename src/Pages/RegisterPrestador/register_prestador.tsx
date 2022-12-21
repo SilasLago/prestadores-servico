@@ -89,6 +89,7 @@ function RegisterPrestador() {
     setRg("");
     setCpf("");
     setContract("");
+    setLocaisAtendimento([]);
   }
 
   return (
