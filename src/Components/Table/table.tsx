@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import styles from './table.module.scss'
 import { NavigationFooterBar, RenderTrs } from './table_components'
 import { Line } from './utils/classes';
@@ -159,4 +159,4 @@ const Table = ({
   )
 }
 
-export default Table
+export default memo(Table);

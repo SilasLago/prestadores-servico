@@ -1,7 +1,7 @@
 import classNames from "classnames"
 import styles from './tr.module.scss'
 import stylesButton from './button.module.scss'
-import { MouseEventHandler } from "react"
+import { memo, MouseEventHandler } from "react"
 import { Line } from "./utils/classes"
 
 interface IRenderTrs {
@@ -12,7 +12,7 @@ interface IRenderTrs {
   moreInfoAbout?: number | null,
   showAside?: boolean
 }
-export const RenderTrs = ({ trsData, tableColumnsLength, continueOpen, setMoreInfoAbout, moreInfoAbout, showAside }: IRenderTrs): JSX.Element => {
+export const RenderTrs = memo(({ trsData, tableColumnsLength, continueOpen, setMoreInfoAbout, moreInfoAbout, showAside }: IRenderTrs): JSX.Element => {
   return (
     <>
       {trsData.length > 0 ? (
@@ -31,7 +31,7 @@ export const RenderTrs = ({ trsData, tableColumnsLength, continueOpen, setMoreIn
       ) : <AnyContentMessage length={tableColumnsLength} />}
     </>
   )
-}
+})
 
 const executeFunctions = (
   line: Line, 
@@ -57,7 +57,7 @@ interface ITr {
   length: number;
   showAside?: boolean;
 }
-const Tr = ({ line, index, continueOpen, moreInfoAbout, setMoreInfoAbout, length, showAside }: ITr) => {  
+const Tr = memo(({ line, index, continueOpen, moreInfoAbout, setMoreInfoAbout, length, showAside }: ITr) => {  
   return (
     <>
       <tr
@@ -107,7 +107,7 @@ const Tr = ({ line, index, continueOpen, moreInfoAbout, setMoreInfoAbout, length
       )}
     </>
   )
-}
+})
 
 interface INavigationButtonFooterBar {
   showGoToFirst: boolean;
@@ -118,7 +118,7 @@ interface INavigationButtonFooterBar {
   maxPage: number;
   onClick: Function;
 }
-export const NavigationFooterBar = ({ showGoToFirst, showGoToLast, buttons, minPage, curPage, maxPage, onClick }: INavigationButtonFooterBar) => {
+export const NavigationFooterBar = memo(({ showGoToFirst, showGoToLast, buttons, minPage, curPage, maxPage, onClick }: INavigationButtonFooterBar) => {
   return (
     <div className={stylesButton.footer}>
 
@@ -156,7 +156,7 @@ export const NavigationFooterBar = ({ showGoToFirst, showGoToLast, buttons, minP
       )}
     </div>
   )
-}
+})
 
 interface INavigationButton {
   index: number;
@@ -164,7 +164,7 @@ interface INavigationButton {
   onClick: MouseEventHandler;
   curPage: number;
 }
-const NavigationButton = ({ index, buttonText, onClick, curPage }: INavigationButton) => {
+const NavigationButton = memo(({ index, buttonText, onClick, curPage }: INavigationButton) => {
   return (
     <button onClick={onClick} className={classNames({
       [stylesButton["pages-button"]]: curPage !== index,
@@ -173,13 +173,13 @@ const NavigationButton = ({ index, buttonText, onClick, curPage }: INavigationBu
       <span>{buttonText}</span>
     </button>
   )
-}
+})
 
 
 interface IAnyContentMessage {
   length: number
 }
-const AnyContentMessage = ({ length }: IAnyContentMessage) => {
+const AnyContentMessage = memo(({ length }: IAnyContentMessage) => {
   return (
     <tr className='text-secondary'>
       <td colSpan={length}>
@@ -187,4 +187,4 @@ const AnyContentMessage = ({ length }: IAnyContentMessage) => {
       </td>
     </tr>
   )
-}
+})

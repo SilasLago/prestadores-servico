@@ -11,7 +11,7 @@ function Servicos() {
   const servicoTableTitles: Array<string> = ["Cliente", "Filial", "Tipo de solicitação", "Local de atendimento", "Data da solicitação", "Mais informações"]
   const tableLines: Array<Line> = [
     new Line(undefined, undefined, undefined, "Bradesco", "0037 - Serra Preta", "---", "Salvador - BA", new Date().toDateString(), createButton(37))
-  ]
+  ];
 
   function createButton(id: number): JSX.Element {
     return (

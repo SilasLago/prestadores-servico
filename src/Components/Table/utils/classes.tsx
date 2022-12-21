@@ -2,7 +2,7 @@ export class Line {
 
     private _aside: JSX.Element | undefined;
     private _className: string | undefined;
-    private _functions: Functions | undefined;
+    private _functions: Functions = new Functions();
 
     constructor(functions?: Functions, className?: string, aside?: JSX.Element, ...values: Array<JSX.Element | string | number>) {
         if(aside) {
@@ -43,8 +43,7 @@ export class Line {
     public defineProperty(key: string, value: any): void {
         Object.defineProperty(this, key, {
             value: value,
-            writable: false,
-            get: () => value
+            writable: false
         })
     }
 
@@ -81,11 +80,19 @@ export class Line {
         do {
             for(let i = 0; i < propertyLength; i++) {
                 const randomCharIndex = Math.floor(Math.random() * chars.length);
-                newProperty += chars.slice(randomCharIndex, randomCharIndex + 1);
+                let newChar = "";
+                if(i !== 0) {
+                    newChar = chars.slice(randomCharIndex, randomCharIndex + 1);
+                } else {
+                    /* We remove the "_" char of the list of possible chars because 
+                    first char being "_" means that this attribute is private, and thats
+                    not the case. */
+                    newChar = chars.slice(0, chars.length - 1).slice(randomCharIndex, randomCharIndex + 1);
+                }
+                newProperty += newChar;
             }
             propertyExists = curClass[newProperty] !== undefined;
         } while(propertyExists);
-        
         return newProperty;
     }
 
@@ -101,16 +108,15 @@ class Functions {
         }
     }
 
-    public get onClick() {
+    public get onClick(): Function | undefined {
         return this._onClick;
     }
 
-    public defineFunction(key: string, value: Function): Functions {
+    public defineFunction(key: string, value: Function): void {
         Object.defineProperty(this, key, {
             value: value,
             writable: false
         })
-        return this;
     }
 
 }
