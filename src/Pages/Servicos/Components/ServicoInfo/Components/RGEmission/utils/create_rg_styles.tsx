@@ -37,6 +37,113 @@ export const blankSpaceStyle = {
 	}
 }
 
+export const signatureStyle = {
+	font: {
+		bold: true,
+		color: {
+			rgb: "000000"
+		},
+		name: "Arial",
+		sz: 11
+	},
+	border: {
+		top: {
+			color: {
+				rgb: "000000"
+			},
+			style: "medium"
+		}
+	},
+	alignment: {
+		vertical: "center",
+		horizontal: "center"
+	}
+}
+
+export const borderBottomStyle = {
+	font: {
+		color: {
+			rgb: "FFFFFF"
+		}
+	},
+	fill: {
+		fgColor: {
+			rgb: "FFFFFF"
+		}
+	},
+	border: {
+		bottom: {
+			color: {
+				rgb: "000000"
+			},
+			style: "thin"
+		}
+	}
+}
+
+export const borderTopStyle = {
+	font: {
+		color: {
+			rgb: "FFFFFF"
+		}
+	},
+	fill: {
+		fgColor: {
+			rgb: "FFFFFF"
+		}
+	},
+	border: {
+		top: {
+			color: {
+				rgb: "000000"
+			},
+			style: "medium"
+		}
+	}
+}
+
+export const borderLeftStyle = {
+	font: {
+		color: {
+			rgb: "FFFFFF"
+		}
+	},
+	fill: {
+		fgColor: {
+			rgb: "FFFFFF"
+		}
+	},
+	border: {
+		left: {
+			color: {
+				rgb: "000000"
+			},
+			style: "medium"
+		}
+	}
+}
+
+export const borderRightStyle = {
+	font: {
+		color: {
+			rgb: "FFFFFF"
+		}
+	},
+	fill: {
+		fgColor: {
+			rgb: "FFFFFF"
+		}
+	},
+	border: {
+		right: {
+			color: {
+				rgb: "000000"
+			},
+			style: "medium"
+		}
+	}
+}
+
 export const bigTitleStyle = {
 	font: {
 		bold: true,
