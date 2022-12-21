@@ -34,19 +34,13 @@ const Table = ({
   const maxLinesInPage = 5
 
   useEffect(() => {
-    if (lines.length > 0 && pageable && amountPages === 0) {
+    if(pageable) {
       setNewAmountPages()
-    } else if (amountPages > 0 && pageable) {
-      setNewAmountPages()
-      updatePagesList()
     }
   }, [lines])
 
   useEffect(() => {
-    if (amountPages > 0) {
-      setNewAmountPages()
-      updatePagesList()
-    }
+    updatePagesList()
   }, [amountPages])
 
   const setNewAmountPages = () => {
@@ -106,8 +100,7 @@ const Table = ({
     <section>
       {/* Inside of this div goes the table and his content. */}
       <div className={styles.container}>
-        {(allPages.length > 0 || pageable === false) && (
-          <table id={id} className={classNames({
+      <table id={id} className={classNames({
             "table border": true,
             [className]: true,
             [styles.table]: true
@@ -132,7 +125,7 @@ const Table = ({
             {/* Lines data go here */}
             <tbody className={styles.body}>
               <RenderTrs
-                trsData={pageable ? allPages[curPage] : lines}
+                trsData={pageable && allPages.length > 0 ? allPages[curPage] : lines}
                 tableColumnsLength={titles.length}
                 continueOpen={continueOpen}
                 setMoreInfoAbout={setMoreInfoAbout}
@@ -141,7 +134,6 @@ const Table = ({
               />
             </tbody>
           </table>
-        )}
       </div>
       {/* Now we are creating the buttons case the table are pageable. */}
       {pageable && allPages.length > 0 && (
