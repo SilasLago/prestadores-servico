@@ -98,7 +98,7 @@ export class Line {
 
 }
 
-class Functions {
+export class Functions {
 
     private _onClick: Function | undefined;
 

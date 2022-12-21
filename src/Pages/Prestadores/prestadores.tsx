@@ -2,8 +2,9 @@ import DefaultButton from "Components/Inputs/DefaultButton/default_button";
 import DefaultInput from "Components/Inputs/DefaultInput/default_input";
 import { DefaultInputData } from "Components/Inputs/DefaultInput/utils/classes";
 import Table from "Components/Table/table";
-import { Line } from "Components/Table/utils/classes";
+import { Functions, Line } from "Components/Table/utils/classes";
 import { useDesapear } from "Hooks/useDesapear/useDesapear";
+import { Prestador } from "Pages/RegisterPrestador/utils/classes";
 import { FormEvent, useState } from "react";
 import { SelectDataClass } from "Utils/classes";
 import { states } from "Utils/datas";
@@ -33,14 +34,33 @@ function Prestadores() {
     "Mais informações"
   ]
 
-  const [lines, setLines] = useState<Array<Line>>([
-    new Line(undefined, undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(0)),
-    new Line(undefined, undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(1)),
-    new Line(undefined, undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(2)),
-    new Line(undefined, undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(3)),
-    new Line(undefined, undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(4)),
-    new Line(undefined, undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(5)),
-  ]);
+  function createFunctions(): Functions {
+    const functions = new Functions();
+
+    const prestador = new Prestador("Julio Cocielo", "PR", "Curitiba", "cocielo@gmail.com", "(41) 9 4944-4444", "Pedreiro", "Entrega de pedras", 1500.59, 10, "41.154.222-45", "123.456.789-01");
+    
+    functions.defineFunction("getHasContract", function(): boolean {
+      return prestador.temContrato();
+    });
+    functions.defineFunction("getState", function(): string {
+      return prestador.estado;
+    });
+    functions.defineFunction("getCity", function(): string {
+      return prestador.cidade;
+    });
+
+    return functions;
+  }
+
+  const allLines = [
+    new Line(createFunctions(), undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(0)),
+    new Line(createFunctions(), undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(1)),
+    new Line(createFunctions(), undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(2)),
+    new Line(createFunctions(), undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(3)),
+    new Line(createFunctions(), undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(4)),
+    new Line(createFunctions(), undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(5)),
+  ]
+  const [lines, setLines] = useState<Array<Line>>(allLines);
 
   function createButton(id: number): JSX.Element {
     return (
@@ -65,7 +85,19 @@ function Prestadores() {
 
   function onSubmitFilters(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    alert("Busca feita!");
+
+    setLines(allLines.filter((line: Line) => {
+      const curFunctions: any = line.functions;
+
+      let getLine = true;
+
+      getLine = searchByHasContract === curFunctions.getHasContract() 
+      && searchByState === curFunctions.getState() 
+      && searchByCity === curFunctions.getCity();
+
+      return getLine;
+    }));
+
   }
 
   return (
