@@ -4,7 +4,7 @@ export class Line {
     private _className: string | undefined;
     private _functions: Functions | undefined;
 
-    constructor(functions?: Functions, className?: string, aside?: JSX.Element) {
+    constructor(functions?: Functions, className?: string, aside?: JSX.Element, ...values: Array<JSX.Element | string | number>) {
         if(aside) {
             this._aside = aside;
         }
@@ -13,6 +13,11 @@ export class Line {
         }
         if(functions) {
             this._functions = functions;
+        }
+        if(values) {
+            for (const value of values) {
+                this.defineValue(value);
+            }
         }
     }
 
@@ -28,21 +33,19 @@ export class Line {
         return this._aside;
     }
 
-    public defineValue(value: JSX.Element | string | number): Line {
+    public defineValue(value: JSX.Element | string | number): void {
         Object.defineProperty(this, this.createPropertyKey(), {
             value: value,
             writable: false,
         });
-        return this;
     }
 
-    public defineProperty(key: string, value: any): Line {
+    public defineProperty(key: string, value: any): void {
         Object.defineProperty(this, key, {
             value: value,
             writable: false,
             get: () => value
         })
-        return this;
     }
 
     public getValue(property: string): any {

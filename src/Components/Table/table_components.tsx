@@ -18,7 +18,7 @@ export const RenderTrs = ({ trsData, tableColumnsLength, continueOpen, setMoreIn
       {trsData.length > 0 ? (
         trsData.map((line: Line, index: number) => (
           <Tr
-            key={`${line}`}
+            key={`${line.getValidProperties()[0]}`}
             line={line}
             index={index}
             continueOpen={continueOpen}

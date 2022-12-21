@@ -10,7 +10,7 @@ function ServicosFinalizados() {
 
   const servicoTableTitles: Array<string> = ["Cliente", "Filial", "Tipo de solicitação", "Local de atendimento", "Data da solicitação", "Mais informações"]
   const tableLines: Array<Line> = [
-    new Line().defineValue("Bradesco").defineValue("1101 - Serra Dourada").defineValue("---").defineValue("Curitiba - PR").defineValue(new Date().toDateString()).defineValue(createButton(36))
+    new Line(undefined, undefined, undefined, "Bradesco", "1101 - Serra Dourada", "---","Curitiba - PR", new Date().toDateString(), createButton(36))
   ]
 
   function createButton(id: number): JSX.Element {

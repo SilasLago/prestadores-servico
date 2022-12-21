@@ -19,12 +19,12 @@ function Prestadores() {
   ] 
 
   const [lines, setLines] = useState<Array<Line>>([
-    new Line().defineValue("IMG").defineValue("João Cleber Silva").defineValue("9 / 10").defineValue("R$ 150,55").defineValue(createButton(0)),
-    new Line().defineValue("IMG").defineValue("Marcia Maria Pereira").defineValue("10 / 10").defineValue("R$ 98,55").defineValue(createButton(1)),
-    new Line().defineValue("IMG").defineValue("Ana Toledo Silva").defineValue("7 / 10").defineValue("R$ 175,00").defineValue(createButton(2)),
-    new Line().defineValue("IMG").defineValue("Hugo Jonathas Santos").defineValue("4 / 10").defineValue("R$ 50,88").defineValue(createButton(3)),
-    new Line().defineValue("IMG").defineValue("Matheus Issac Rosa").defineValue("10 / 10").defineValue("R$ 165,55").defineValue(createButton(4)),
-    new Line().defineValue("IMG").defineValue("Kaike Barros Aroudo").defineValue("0 / 10").defineValue("R$ 366,01").defineValue(createButton(5)),
+    new Line(undefined, undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(0)),
+    new Line(undefined, undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(1)),
+    new Line(undefined, undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(2)),
+    new Line(undefined, undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(3)),
+    new Line(undefined, undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(4)),
+    new Line(undefined, undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(5)),
   ]);
 
   function createButton(id: number): JSX.Element {
