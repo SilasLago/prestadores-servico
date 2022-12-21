@@ -23,11 +23,9 @@
     }
 
     &__input[type=checkbox] {
-        
-        transform: scale(1.8);
-
-        width: 10px;
-        height: 10px;
+        $checkbox-size: 25px;
+        width: $checkbox-size;
+        height: $checkbox-size;
         margin-left: 15px;
         &:hover, &:focus {
             background: linear-gradient(to bottom, white 50%, #d1d1d1);

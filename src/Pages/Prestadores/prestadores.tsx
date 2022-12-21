@@ -104,9 +104,9 @@ function Prestadores() {
 
       let getLine = true;
 
-      getLine = searchByHasContract === curFunctions.getHasContract() 
-      && searchByState === curFunctions.getState() 
-      && searchByCity === curFunctions.getCity();
+      getLine = searchByHasContract === curFunctions.getHasContract()
+      && (searchByState === curFunctions.getState() || searchByState === "")
+      && (searchByCity === curFunctions.getCity() || searchByCity === "");
 
       return getLine;
     }));
