@@ -1,3 +1,5 @@
+import { PrestadorLocalDeAtendimento } from "Utils/classes";
+
 export class Prestador {
 
     public readonly contrato: string | undefined;
@@ -15,6 +17,7 @@ export class Prestador {
         public readonly avaliacao: number,
         public readonly rg: string,
         public readonly cpf: string,
+        public readonly locaisAtendimento: Array<PrestadorLocalDeAtendimento>,
         contrato?: string,
         id?: number,
     ) {

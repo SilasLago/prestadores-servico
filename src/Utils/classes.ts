@@ -6,3 +6,10 @@ export class SelectDataClass implements SelectDataType {
         public readonly label: string,
     ) {}
 }
+
+export class PrestadorLocalDeAtendimento {
+    constructor(
+        public readonly city: string,
+        public readonly state: string,
+    ) {}
+}

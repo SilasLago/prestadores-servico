@@ -1,7 +1,9 @@
 import DefaultButton from "Components/Inputs/DefaultButton/default_button";
 import DefaultInput from "Components/Inputs/DefaultInput/default_input";
 import { DefaultInputData } from "Components/Inputs/DefaultInput/utils/classes";
+import LocalAtendimentoInput from "Components/Inputs/LocalAtendimentoInput/local_atendimento_input";
 import { FormEvent, useState } from "react";
+import { PrestadorLocalDeAtendimento } from "Utils/classes";
 import { states } from "Utils/datas";
 import { cleanString, formatCPF, formatPhone, formatRG } from "Utils/formatters";
 import styles from "./register_prestador.module.scss";
@@ -20,6 +22,7 @@ function RegisterPrestador() {
   const [rg, setRg] = useState<string>("");
   const [cpf, setCpf] = useState<string>("");
   const [contract, setContract] = useState<string>("");
+  const [locaisAtendimento, setLocaisAtendimento] = useState<Array<PrestadorLocalDeAtendimento>>([]);
   
   const inputs: Array<DefaultInputData> = [
     new DefaultInputData(name, setName, "name", "text", "Nome", "Nome", "Nome"),
@@ -115,6 +118,10 @@ function RegisterPrestador() {
             data={data}
           />
         ))}
+        <LocalAtendimentoInput 
+          locaisSelecionados={locaisAtendimento}
+          setLocaisSelecionados={setLocaisAtendimento}
+        />
         <DefaultButton type="submit" label="Cadastrar" />
         <hr/>
       </form>

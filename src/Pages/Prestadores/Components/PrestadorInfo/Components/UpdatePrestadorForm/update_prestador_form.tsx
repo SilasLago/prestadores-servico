@@ -3,6 +3,7 @@ import DefaultInput from "Components/Inputs/DefaultInput/default_input";
 import { DefaultInputData } from "Components/Inputs/DefaultInput/utils/classes";
 import { Prestador } from "Pages/RegisterPrestador/utils/classes";
 import { FormEvent, SetStateAction, useState } from "react";
+import { PrestadorLocalDeAtendimento } from "Utils/classes";
 import { states } from "Utils/datas";
 import { formatCPF, formatPhone, formatRG, setFormattedValue } from "Utils/formatters";
 import styles from "./update_prestador_form.module.scss";
@@ -24,6 +25,8 @@ function UpdatePrestadorForm({ curPrestador, setCurPrestador }: IUpdatePrestador
   const [newPrestadorGraduation, setNewPrestadorGraduation] = useState<string>(curPrestador.formacao);
   const [newPrestadorServiceType, setNewPrestadorServiceType] = useState<string>(curPrestador.tipoDeServico);
   const [newPrestadorContract, setNewPrestadorContrat] = useState<string | undefined>(curPrestador.contrato);
+
+  const [newPrestadorLocaisAtendimento, setNewPrestadorLocaisAtendimento] = useState<Array<PrestadorLocalDeAtendimento>>(curPrestador.locaisAtendimento);
 
   const inputs: Array<DefaultInputData> = [
     new DefaultInputData(newPrestadorName, setNewPrestadorName, "name", "text", "Nome", "Nome", "Nome"),
@@ -53,7 +56,9 @@ function UpdatePrestadorForm({ curPrestador, setCurPrestador }: IUpdatePrestador
       curPrestador.avaliacao,
       newPrestadorRg,
       newPrestadorCpf,
+      newPrestadorLocaisAtendimento,
       newPrestadorContract,
+      curPrestador.id,
     );
     setCurPrestador(updatedPrestador);
     alert("Prestador atualizado com sucesso!");

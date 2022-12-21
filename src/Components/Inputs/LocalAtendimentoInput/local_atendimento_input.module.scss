@@ -1,0 +1,41 @@
+@import "Styles/_variables.scss";
+
+.holder {
+    &__label {
+        margin-left: 10px;
+        &::after {
+            content: ":";
+        }
+    }
+    .input {
+        margin-top: 5px;
+        background: linear-gradient(to bottom, white 80%, #dbdbdb);
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid gray;
+        border-radius: 5px;
+
+        &:hover, &:focus {
+            background: linear-gradient(to bottom, white 50%, #d1d1d1);
+            outline: 1px solid $primary-color;
+            cursor: pointer;
+        }
+
+        &:disabled {
+            box-shadow: inset 0px 0px 10px $shadow-color;
+            background: #cccccc;
+            color: black;
+            &::placeholder {
+                color: black;
+            }
+            &:hover {
+                cursor: not-allowed;
+            }
+        }
+
+        &__placeholder, &__icon {
+            padding: 10px;
+        }
+    }
+}

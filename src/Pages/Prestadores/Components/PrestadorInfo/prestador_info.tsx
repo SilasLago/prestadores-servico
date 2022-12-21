@@ -10,6 +10,7 @@ import StartService from "./Components/StartService/start_service";
 import UpdatePrestadorForm from "./Components/UpdatePrestadorForm/update_prestador_form";
 import { actionsDataContext } from "./Contexts/prestador_context";
 import { ActionsPrestadorData } from "./Contexts/prestador_context_class";
+import { PrestadorLocalDeAtendimento } from "Utils/classes";
 
 interface IPrestadorInfo {
   id: number,
@@ -30,6 +31,7 @@ function PrestadorInfo({ id, onClose }: IPrestadorInfo) {
     10,
     "84.984.984-89",
     "111.154.487-52",
+    [new PrestadorLocalDeAtendimento("Curitiba", states[0].value)],
     "https://www.contratos.com.br/grupomayer/charliebrownjunior/",
     id
   ));

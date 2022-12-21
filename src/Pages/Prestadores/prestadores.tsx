@@ -6,7 +6,7 @@ import { Functions, Line } from "Components/Table/utils/classes";
 import { useDesapear } from "Hooks/useDesapear/useDesapear";
 import { Prestador } from "Pages/RegisterPrestador/utils/classes";
 import { FormEvent, useState } from "react";
-import { SelectDataClass } from "Utils/classes";
+import { PrestadorLocalDeAtendimento, SelectDataClass } from "Utils/classes";
 import { states } from "Utils/datas";
 import PrestadorInfo from "./Components/PrestadorInfo/prestador_info";
 import styles from "./prestadores.module.scss";
@@ -37,7 +37,20 @@ function Prestadores() {
   function createFunctions(): Functions {
     const functions = new Functions();
 
-    const prestador = new Prestador("Julio Cocielo", "PR", "Curitiba", "cocielo@gmail.com", "(41) 9 4944-4444", "Pedreiro", "Entrega de pedras", 1500.59, 10, "41.154.222-45", "123.456.789-01");
+    const prestador = new Prestador(
+      "Julio Cocielo", 
+      "PR", 
+      "Curitiba", 
+      "cocielo@gmail.com", 
+      "(41) 9 4944-4444", 
+      "Pedreiro", 
+      "Entrega de pedras", 
+      1500.59, 
+      10, 
+      "41.154.222-45", 
+      "123.456.789-01",
+      [new PrestadorLocalDeAtendimento("Curitiba", "PR")]
+    );
     
     functions.defineFunction("getHasContract", function(): boolean {
       return prestador.temContrato();

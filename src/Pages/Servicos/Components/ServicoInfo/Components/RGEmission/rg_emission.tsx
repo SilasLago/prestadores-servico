@@ -7,6 +7,7 @@ import { useAuth } from "Hooks/useAuth/use_auth";
 import { Servico } from "Pages/Prestadores/Components/PrestadorInfo/Components/StartService/utils/classes";
 import { Prestador } from "Pages/RegisterPrestador/utils/classes";
 import { FormEvent, MouseEventHandler, useState } from "react";
+import { PrestadorLocalDeAtendimento } from "Utils/classes";
 import { RG } from "./utils/classes";
 import { createRg } from "./utils/create_rg";
 import { goalTypesData, requestTypesData } from "./utils/datas";
@@ -45,7 +46,7 @@ function RGEmission({ onClose, servico }: IRGEmission) {
     e.preventDefault();
 
     const user = new User("Silas Lago", "TI", "Desenvolvedor de Sistemas", "0000 - Matriz", "41 9 998843974", "juanfsa@live.com");
-    const prestador = new Prestador("Maicon Douglas", "PR", "Curitiba", "jmaicon@gmail.com", "35 9 98554711", "Pedreiro", "Enviar cartas", 15.90, 10, "85.001.551-54", "123.147.159-12");
+    const prestador = new Prestador("Maicon Douglas", "PR", "Curitiba", "jmaicon@gmail.com", "35 9 98554711", "Pedreiro", "Enviar cartas", 15.90, 10, "85.001.551-54", "123.147.159-12", [new PrestadorLocalDeAtendimento("Curitiba", "PR")]);
     const updatedServico: Servico = servico;
     updatedServico.setNumeroProcesso(numeroProcesso);
 

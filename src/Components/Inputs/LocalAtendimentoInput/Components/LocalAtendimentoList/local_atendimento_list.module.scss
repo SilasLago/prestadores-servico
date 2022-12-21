@@ -1,0 +1,21 @@
+.list {
+    list-style: none;
+    width: 100%;
+    padding: 0;
+    &__item {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0px;
+        margin-bottom: 5px;
+        border-bottom: 1px solid gray;
+        &__exclude {
+            &:hover {
+                cursor: pointer;
+            }
+            &::after {
+                content: "❌";
+            }
+        }
+    }
+}
