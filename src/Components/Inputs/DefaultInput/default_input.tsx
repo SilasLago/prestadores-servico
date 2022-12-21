@@ -30,9 +30,7 @@ function DefaultInput({ id, className, type, placeholder, title, label, min, max
       {type !== "textarea" && type !== "select" && type !== "checkbox" && (
         <input 
           id={id}
-          className={classNames({
-            [styles.holder__input]: true,
-          })}
+          className={styles.holder__input}
           placeholder={placeholder}
           type={type}
           title={title}
@@ -52,10 +50,7 @@ function DefaultInput({ id, className, type, placeholder, title, label, min, max
           required={required}
           disabled={disabled}
           onChange={e => onChange ? onChange(e.target.value) : undefined}
-          className={classNames({
-            [className ? className : ""]: true,
-            [styles.holder__input]: true,
-          })}
+          className={styles.holder__input}
         >
           {data?.map(curOption => (
             <option value={curOption.value} key={curOption.value}>
@@ -75,20 +70,15 @@ function DefaultInput({ id, className, type, placeholder, title, label, min, max
           maxLength={max}
           disabled={disabled}
           onChange={e => onChange ? onChange(e.target.value) : undefined}
-          className={classNames({
-            [className ? className : ""]: true,
-            [styles.holder__input]: true,
-          })}
+          className={styles.holder__input}
         ></textarea>
       )} 
       {type === "checkbox" && (
         <input 
-          id={id}
-          className={classNames({
-            [styles.holder__input]: true,
-          })}
-          placeholder={placeholder}
           type={type}
+          id={id}
+          className={styles.holder__input}
+          placeholder={placeholder}
           title={title}
           min={min}
           max={max}
