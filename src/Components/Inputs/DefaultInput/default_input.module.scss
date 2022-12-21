@@ -50,12 +50,14 @@
         &:hover, &:focus {
             background: linear-gradient(to bottom, white 50%, #d1d1d1);
             outline: 1px solid $primary-color;
+            z-index: 0;
         }
 
         &:disabled {
             box-shadow: inset 0px 0px 10px $shadow-color;
             background: #cccccc;
             color: black;
+            z-index: 0;
             &::placeholder {
                 color: black;
             }
