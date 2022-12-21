@@ -19,6 +19,27 @@
     }
 }
 
+.filters {
+    margin-bottom: 30px;
+    &__title {
+        font-weight: bold;
+        padding: 0px;
+        margin: 0px;
+    }
+    &__inputs {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        &__input {
+            width: 30%;
+            margin-right: 10px;
+        }
+    }
+    &__button {
+        width: 30%;
+    }
+}
+
 .content {
     width: 100%;
     &__title {
@@ -30,5 +51,18 @@
 @media only screen and (max-width: $break-sm) {
     .content {
         padding: 0px;
+    }
+    .filters {
+        &__inputs {
+            display: block;
+            &__input {
+                width: 100%;
+                margin-right: 0px;
+                margin-bottom: 10px;
+            }
+        }
+        &__button {
+            width: 100%;
+        }
     }
 }

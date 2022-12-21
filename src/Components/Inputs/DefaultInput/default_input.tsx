@@ -6,7 +6,7 @@ import styles from "./default_input.module.scss";
 interface IDefaultInput {
   value: any,
   onChange: React.Dispatch<React.SetStateAction<any>>,
-  type: "text" | "number" | "select" | "password" | "email" | "textarea",
+  type: "text" | "number" | "select" | "password" | "email" | "textarea" | "checkbox",
   placeholder: string,
   title: string,
   label: string,
@@ -20,15 +20,17 @@ interface IDefaultInput {
 }
 function DefaultInput({ id, className, type, placeholder, title, label, min, max, value, onChange, data, disabled, required = true }: IDefaultInput) {
   return (
-    <div className={styles.holder}>
+    <div className={classNames({
+      [styles.holder]: true,
+      [className ? className : ""]: true,
+    })}>
       <label htmlFor={id} className={styles.holder__label}>
         {label}
       </label>
-      {type !== "textarea" && type !== "select" && (
+      {type !== "textarea" && type !== "select" && type !== "checkbox" && (
         <input 
           id={id}
           className={classNames({
-            [className ? className : ""]: true,
             [styles.holder__input]: true,
           })}
           placeholder={placeholder}
@@ -79,6 +81,24 @@ function DefaultInput({ id, className, type, placeholder, title, label, min, max
           })}
         ></textarea>
       )} 
+      {type === "checkbox" && (
+        <input 
+          id={id}
+          className={classNames({
+            [styles.holder__input]: true,
+          })}
+          placeholder={placeholder}
+          type={type}
+          title={title}
+          min={min}
+          max={max}
+          required={required}
+          checked={value}
+          value={value}
+          disabled={disabled}
+          onChange={e => onChange(!value)}
+        />
+      )}
     </div>
   )
 }
