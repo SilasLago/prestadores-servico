@@ -24,10 +24,10 @@ function SideMenuButtonComponent({ data, onClick }: ISideMenuButtonProps) {
 
   return (
     <div>
-      <div role="button" className={classNames({
+      <div role="button" tabIndex={0} className={classNames({
         [styles.button]: true,
         [styles["button--selected"]]: data.selected
-      })} onClick={onClick}>
+      })} onKeyDown={key => key.key === "Enter" ? onClick({} as React.MouseEvent<HTMLElement, MouseEvent>) : undefined} onClick={onClick}>
         <div className={styles.button__info}>
           <img
             alt="Ícone"
@@ -47,10 +47,10 @@ function SideMenuButtonComponent({ data, onClick }: ISideMenuButtonProps) {
       {data.selected && (
         <div className={styles.options}>
           {data.options.map((option: SelectDataType) => (
-            <div className={classNames({
+            <div tabIndex={0} className={classNames({
               [styles.options__option]: true,
               [styles["options__option--selected"]]: optionSelected === option.value,
-            })} onClick={() => setOptionSelected(option.value)} key={option.value}>
+            })} onKeyDown={key => key.key === "Enter" ? setOptionSelected(option.value) : undefined} onClick={() => setOptionSelected(option.value)} key={option.value}>
               <div className={styles.options__option__img}>
                 <img
                   src={optionLineImg}

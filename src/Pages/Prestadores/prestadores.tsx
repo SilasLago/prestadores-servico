@@ -18,10 +18,10 @@ function Prestadores() {
   const [searchByHasContract, setSearchByHasContract] = useState<boolean>(true);
 
   const inputs: Array<DefaultInputData> = [
-    new DefaultInputData(searchByState, setSearchByState, "estado", "select", "Estado", "Estado", "Estado", [new SelectDataClass("", "estado..."), ...states], true, false),
-    new DefaultInputData(searchByCity, setSearchByCity, "cidade", "select", "Cidade", "Cidade", "Cidade", [new SelectDataClass("", "cidade..."), ...states], true, false),
+    new DefaultInputData(searchByState, setSearchByState, "estado", "select", "Estado", "Estado", "Estado", [new SelectDataClass("", "estado..."), ...states], false, false),
+    new DefaultInputData(searchByCity, setSearchByCity, "cidade", "select", "Cidade", "Cidade", "Cidade", [new SelectDataClass("", "cidade..."), ...states], false, false),
     new DefaultInputData(searchByHasContract, setSearchByHasContract, "contrato", "checkbox", "Tem contrato", "Tem contrato", "Tem contrato", states, false, false),
-  ]
+  ];
 
   const [curIdPrestadorInfo, setCurIdPrestadorInfo] = useState<number | null>(null);
   const desapear = useDesapear();
@@ -32,7 +32,7 @@ function Prestadores() {
     "Avaliação",
     "Valor cobrado",
     "Mais informações"
-  ]
+  ];
 
   function createFunctions(): Functions {
     const functions = new Functions();
@@ -147,10 +147,8 @@ function Prestadores() {
       <Table
         titles={tableTitles}
         lines={lines}
-        pageable={true}
       />
-      {typeof (curIdPrestadorInfo) === "number" &&
-        <PrestadorInfo id={curIdPrestadorInfo} onClose={closePrestadorInfo} />}
+      {typeof(curIdPrestadorInfo) === "number" && <PrestadorInfo id={curIdPrestadorInfo} onClose={closePrestadorInfo} />}
     </section>
   )
 }

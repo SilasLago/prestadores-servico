@@ -22,7 +22,7 @@ function DefaultModal({ size, title, children, onClose }: IDefaultModal) {
           <h1 className={styles.modal__header__title}>
             {title}
           </h1>
-          <div className={styles.modal__header__close} onClick={onClose} />
+          <div className={styles.modal__header__close} onClick={onClose} tabIndex={0} onKeyDown={e => e.key === "Enter" ? onClose({} as React.MouseEvent<HTMLDivElement, MouseEvent>) : undefined} />
         </div>
         <hr />
         <div className={styles.modal__body}>

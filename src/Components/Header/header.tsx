@@ -37,7 +37,12 @@ function Header() {
               Silas Lago
             </span>
           </div>
-          <figure className={styles.figure} onClick={onOpenUserInfo}>
+          <figure 
+            className={styles.figure} 
+            tabIndex={0} 
+            onClick={onOpenUserInfo}
+            onKeyDown={e => e.key === "Enter" ? onOpenUserInfo() : undefined}
+          >
             <img
               alt="Imagem de usuário"
               src={userImg}
