@@ -73,6 +73,7 @@ function StartService() {
             required={required}
             title={title}
             key={id}
+            isPositionFixed={true}
           />
         ))}
         <DefaultButton

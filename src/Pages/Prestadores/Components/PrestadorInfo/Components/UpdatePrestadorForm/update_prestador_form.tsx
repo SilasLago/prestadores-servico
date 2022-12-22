@@ -109,6 +109,7 @@ function UpdatePrestadorForm({ curPrestador, setCurPrestador }: IUpdatePrestador
             title={title}
             type={type}
             key={id}
+            isPositionFixed={false}
           />
         ))}
         <LocalAtendimentoInput

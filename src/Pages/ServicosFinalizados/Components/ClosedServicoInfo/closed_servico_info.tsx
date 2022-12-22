@@ -41,6 +41,8 @@ function ClosedServicoInfo({ onClose }: IClosedServicoInfo) {
           required={required}
           title={title}
           type={type}
+          isPositionFixed={true}
+          key={id}
         />
       ))}
     </DefaultModal>

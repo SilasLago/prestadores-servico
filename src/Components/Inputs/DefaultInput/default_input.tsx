@@ -16,9 +16,18 @@ interface IDefaultInput {
   className?: string,
   min?: number,
   max?: number,
-  data?: Array<SelectDataType>
+  data?: Array<SelectDataType>,
+  isPositionFixed: boolean
 }
-function DefaultInput({ id, className, type, placeholder, title, label, min, max, value, onChange, data, disabled, required = true }: IDefaultInput) {
+function DefaultInput({ id, className, type, placeholder, title, label, min, max, value, onChange, data, disabled, required = true, isPositionFixed }: IDefaultInput) {
+  
+  function getDefaultClassNames(): string {
+    return classNames({
+      [styles.holder__input]: true,
+      [styles["holder__input--z"]]: !isPositionFixed,
+    })
+  }
+  
   return (
     <div className={classNames({
       [styles.holder]: true,
@@ -30,7 +39,7 @@ function DefaultInput({ id, className, type, placeholder, title, label, min, max
       {type !== "textarea" && type !== "select" && type !== "checkbox" && (
         <input 
           id={id}
-          className={styles.holder__input}
+          className={getDefaultClassNames()}
           placeholder={placeholder}
           type={type}
           title={title}
@@ -50,7 +59,7 @@ function DefaultInput({ id, className, type, placeholder, title, label, min, max
           required={required}
           disabled={disabled}
           onChange={e => onChange ? onChange(e.target.value) : undefined}
-          className={styles.holder__input}
+          className={getDefaultClassNames()}
         >
           {data?.map(curOption => (
             <option value={curOption.value} key={curOption.value}>
@@ -70,14 +79,14 @@ function DefaultInput({ id, className, type, placeholder, title, label, min, max
           maxLength={max}
           disabled={disabled}
           onChange={e => onChange ? onChange(e.target.value) : undefined}
-          className={styles.holder__input}
+          className={getDefaultClassNames()}
         ></textarea>
       )} 
       {type === "checkbox" && (
         <input 
           type={type}
           id={id}
-          className={styles.holder__input}
+          className={getDefaultClassNames()}
           placeholder={placeholder}
           title={title}
           min={min}

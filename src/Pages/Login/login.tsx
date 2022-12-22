@@ -39,6 +39,7 @@ function Login() {
           type="text"
           onChange={setUserLogin}
           value={userLogin}
+          isPositionFixed={false}
         />
         <DefaultInput
           id="password"
@@ -48,6 +49,7 @@ function Login() {
           type="password"
           onChange={setUserPassword}
           value={userPassword}
+          isPositionFixed={false}
         />
         <GoogleRecaptcha />
         <div className={styles.button}>

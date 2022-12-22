@@ -56,13 +56,15 @@
             box-shadow: inset 0px 0px 10px $shadow-color;
             background: #cccccc;
             color: black;
-            z-index: -1;
             &::placeholder {
                 color: black;
             }
             &:hover {
                 cursor: not-allowed;
             }
+        }
+        &--z {
+            z-index: -1;
         }
     }
 }

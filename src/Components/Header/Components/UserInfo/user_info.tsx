@@ -76,6 +76,7 @@ function UserInfo({ onClose }: IUserInfo) {
             value={value}
             onChange={onChange}
             data={data}
+            isPositionFixed={true}
           />
         ))}
         <div className={styles.holder}>

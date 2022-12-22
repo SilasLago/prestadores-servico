@@ -69,6 +69,7 @@ function ServicoInfo({ servicoId, onClose }: IServicoInfo) {
                 type={type}
                 value={value}
                 key={id}
+                isPositionFixed={true}
               />
             ))}
           </div>

@@ -89,6 +89,7 @@ function RGEmission({ onClose, servico }: IRGEmission) {
             title={title}
             type={type}
             key={id}
+            isPositionFixed={true}
           />
         ))}
         <DefaultButton type="submit" label="Emitir" />

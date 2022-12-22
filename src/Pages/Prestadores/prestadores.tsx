@@ -136,6 +136,7 @@ function Prestadores() {
                 required={required}
                 title={title}
                 value={value}
+                isPositionFixed={false}
               />
             </div>
           ))}

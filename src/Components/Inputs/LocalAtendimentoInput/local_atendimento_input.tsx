@@ -78,6 +78,7 @@ function LocalAtendimentoInput({ locaisSelecionados, setLocaisSelecionados }: IL
               value={selectedState}
               onChange={setSelectedState}
               data={[new SelectDataClass("", "estado..."), ...states]}
+              isPositionFixed={true}
             />
             <DefaultInput
               id="cidade"
@@ -88,6 +89,7 @@ function LocalAtendimentoInput({ locaisSelecionados, setLocaisSelecionados }: IL
               value={selectedCity}
               onChange={setSelectedCity}
               disabled={selectedState === ""}
+              isPositionFixed={true}
             />
             <DefaultButton type="button" label="Adicionar" onClick={onSubmitLocalAtendimentoForm} />
             <hr/>

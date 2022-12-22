@@ -117,6 +117,7 @@ function RegisterPrestador() {
             title={title}
             value={value}
             data={data}
+            isPositionFixed={false}
           />
         ))}
         <LocalAtendimentoInput 
