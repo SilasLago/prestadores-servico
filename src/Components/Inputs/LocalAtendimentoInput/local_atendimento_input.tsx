@@ -1,4 +1,4 @@
-import DefaultModal from "Components/DefaultModal/default_modal";
+import DefaultModal from "Components/Modals/DefaultModal/default_modal";
 import { useState } from "react";
 import { PrestadorLocalDeAtendimento, SelectDataClass } from "Utils/classes";
 import { states } from "Utils/datas";

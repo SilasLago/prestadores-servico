@@ -1,4 +1,4 @@
-import DefaultModal from "Components/DefaultModal/default_modal";
+import DefaultModal from "Components/Modals/DefaultModal/default_modal";
 import DefaultButton from "Components/Inputs/DefaultButton/default_button";
 import { Prestador } from "Pages/RegisterPrestador/utils/classes";
 import { useState } from "react";

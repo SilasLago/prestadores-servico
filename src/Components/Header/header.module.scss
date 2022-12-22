@@ -36,7 +36,7 @@
         .figure {
             display: flex;
             align-items: center;
-            color: gray;
+            color: $dark-color;
             cursor: pointer;
             &__picture {
                 width: 90px;

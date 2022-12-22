@@ -6,7 +6,7 @@ import DefaultButton from "Components/Inputs/DefaultButton/default_button";
 import { useDesapear } from "Hooks/useDesapear/useDesapear";
 import { branchs, departments } from "Utils/datas";
 import { DefaultInputData } from "Components/Inputs/DefaultInput/utils/classes";
-import DefaultModal from "Components/DefaultModal/default_modal";
+import DefaultModal from "Components/Modals/DefaultModal/default_modal";
 
 interface IUserInfo {
   onClose: MouseEventHandler<HTMLDivElement>

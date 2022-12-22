@@ -1,4 +1,4 @@
-import DefaultModal from "Components/DefaultModal/default_modal";
+import DefaultModal from "Components/Modals/DefaultModal/default_modal";
 import DefaultButton from "Components/Inputs/DefaultButton/default_button";
 import DefaultInput from "Components/Inputs/DefaultInput/default_input";
 import { DefaultInputData } from "Components/Inputs/DefaultInput/utils/classes";

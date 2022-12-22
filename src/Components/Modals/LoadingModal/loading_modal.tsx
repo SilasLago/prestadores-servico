@@ -1,4 +1,4 @@
-import DefaultModal from "Components/DefaultModal/default_modal";
+import DefaultModal from "Components/Modals/DefaultModal/default_modal";
 
 function LoadingModal() {
   return (

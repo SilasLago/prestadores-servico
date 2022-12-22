@@ -1,4 +1,4 @@
-import DefaultModal from "Components/DefaultModal/default_modal";
+import DefaultModal from "Components/Modals/DefaultModal/default_modal";
 import DefaultButton from "Components/Inputs/DefaultButton/default_button";
 import React, { useContext } from "react";
 import { actionsDataContext } from "../../Contexts/prestador_context";
