@@ -21,10 +21,11 @@ interface IDefaultInput {
 }
 function DefaultInput({ id, className, type, placeholder, title, label, min, max, value, onChange, data, disabled, required = true, isPositionFixed }: IDefaultInput) {
   
-  function getDefaultClassNames(): string {
+  function getDefaultClassNames(isSelect?: boolean): string {
     return classNames({
       [styles.holder__input]: true,
       [styles["holder__input--z"]]: !isPositionFixed,
+      [styles.holder__input__select]: isSelect === true
     })
   }
   
@@ -59,7 +60,7 @@ function DefaultInput({ id, className, type, placeholder, title, label, min, max
           required={required}
           disabled={disabled}
           onChange={e => onChange ? onChange(e.target.value) : undefined}
-          className={getDefaultClassNames()}
+          className={getDefaultClassNames(true)}
         >
           {data?.map(curOption => (
             <option value={curOption.value} key={curOption.value}>
