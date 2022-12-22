@@ -1,4 +1,4 @@
-import { User } from "./utils/classes";
+import { Analista } from "./utils/classes";
 import styles from "./user_info.module.scss";
 import { FormEvent, MouseEventHandler, useEffect, useState } from "react";
 import DefaultInput from "Components/Inputs/DefaultInput/default_input";
@@ -13,7 +13,7 @@ interface IUserInfo {
 }
 function UserInfo({ onClose }: IUserInfo) {
 
-  const curUser = new User(
+  const curAnalista = new Analista(
     "Silas Lago",
     "TI",
     "Desenvolvedor de Sistemas",
@@ -22,12 +22,12 @@ function UserInfo({ onClose }: IUserInfo) {
     "juanfsa@live.com"
   );
 
-  const [name, setName] = useState<string>(curUser.nome);
-  const [department, setDepartment] = useState<string>(curUser.departamento);
-  const [office, setOffice] = useState<string>(curUser.cargo);
-  const [branch, setBranch] = useState<string>(curUser.filial);
-  const [phone, setPhone] = useState<string>(curUser.telefone);
-  const [email, setEmail] = useState<string>(curUser.email);
+  const [name, setName] = useState<string>(curAnalista.nome);
+  const [department, setDepartment] = useState<string>(curAnalista.departamento);
+  const [office, setOffice] = useState<string>(curAnalista.cargo);
+  const [branch, setBranch] = useState<string>(curAnalista.filial);
+  const [phone, setPhone] = useState<string>(curAnalista.telefone);
+  const [email, setEmail] = useState<string>(curAnalista.email);
 
   const desapear = useDesapear();
 
@@ -42,8 +42,8 @@ function UserInfo({ onClose }: IUserInfo) {
 
   function onFormSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const userDataUpdated = new User(name, department, office, branch, phone, email);
-    console.log(userDataUpdated);
+    const curAnalistaDataUpdated = new Analista(name, department, office, branch, phone, email);
+    console.log(curAnalistaDataUpdated);
     alert("Usuário atualizado com sucesso!");
     closeUserInfo();
   }

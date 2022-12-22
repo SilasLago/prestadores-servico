@@ -1,5 +1,5 @@
 import DefaultModal from "Components/DefaultModal/default_modal";
-import { User } from "Components/Header/Components/UserInfo/utils/classes";
+import { Analista } from "Components/Header/Components/UserInfo/utils/classes";
 import DefaultButton from "Components/Inputs/DefaultButton/default_button";
 import DefaultInput from "Components/Inputs/DefaultInput/default_input";
 import { DefaultInputData } from "Components/Inputs/DefaultInput/utils/classes";
@@ -45,13 +45,13 @@ function RGEmission({ onClose, servico }: IRGEmission) {
   function onFormSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const user = new User("Silas Lago", "TI", "Desenvolvedor de Sistemas", "0000 - Matriz", "41 9 998843974", "juanfsa@live.com");
+    const analista = new Analista("Silas Lago", "TI", "Desenvolvedor de Sistemas", "0000 - Matriz", "41 9 998843974", "juanfsa@live.com");
     const prestador = new Prestador("Maicon Douglas", "PR", "Curitiba", "jmaicon@gmail.com", "35 9 98554711", "Pedreiro", "Enviar cartas", 15.90, 10, "85.001.551-54", "123.147.159-12", [new PrestadorLocalDeAtendimento("Curitiba", "PR")]);
     const updatedServico: Servico = servico;
     updatedServico.setNumeroProcesso(numeroProcesso);
 
     const rg = new RG(
-      user,
+      analista,
       prestador,
       updatedServico,
       finalidade,

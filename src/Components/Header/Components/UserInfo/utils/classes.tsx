@@ -1,4 +1,4 @@
-export class User {
+export class Analista {
     
     constructor(
         public readonly nome: string,
