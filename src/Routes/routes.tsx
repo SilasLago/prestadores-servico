@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Login from "Pages/Login/login";
 import { lazy, Suspense } from "react";
+import LoadingModal from "Components/Modals/LoadingModal/loading_modal";
 
 const Prestadores = lazy(() => import("Pages/Prestadores/prestadores"));
 const Servicos = lazy(() => import("Pages/Servicos/servicos"));
@@ -20,7 +21,7 @@ function PagesRoutes() {
     <section>
       <Header />
       <main>
-        <Suspense fallback={<p>Carregando...</p>}>
+        <Suspense fallback={<LoadingModal />}>
           <Router>
             <Routes>
               <Route path="/" element={<Login />} />
