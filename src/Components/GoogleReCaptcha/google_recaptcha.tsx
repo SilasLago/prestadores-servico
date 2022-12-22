@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { appendScript } from "Utils/appendScript";
 import styles from "./google_recaptcha.module.scss";
 
@@ -16,4 +16,4 @@ function GoogleRecaptcha() {
   })} data-sitekey={siteKey}></div>
 }
 
-export default GoogleRecaptcha;
+export default memo(GoogleRecaptcha);

@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { MouseEventHandler } from "react";
+import { memo, MouseEventHandler } from "react";
 import styles from "./default_button.module.scss";
 
 interface IDefaultButton {
@@ -25,4 +25,4 @@ function DefaultButton({ label, type, className, id, variant = "red", disabled, 
   )
 }
 
-export default DefaultButton;
+export default memo(DefaultButton);

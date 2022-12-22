@@ -64,7 +64,9 @@
             }
         }
         &--z {
-            z-index: -1;
+            &:disabled {
+                z-index: -1;
+            }
         }
     }
 }

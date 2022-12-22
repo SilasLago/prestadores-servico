@@ -5,7 +5,7 @@ import Table from "Components/Table/table";
 import { Functions, Line } from "Components/Table/utils/classes";
 import { useDesapear } from "Hooks/useDesapear/useDesapear";
 import { Prestador } from "Pages/RegisterPrestador/utils/classes";
-import { FormEvent, useState } from "react";
+import { FormEvent, useMemo, useState } from "react";
 import { PrestadorLocalDeAtendimento, SelectDataClass } from "Utils/classes";
 import { states } from "Utils/datas";
 import PrestadorInfo from "./Components/PrestadorInfo/prestador_info";
@@ -13,25 +13,36 @@ import styles from "./prestadores.module.scss";
 
 function Prestadores() {
 
-  const [searchByState, setSearchByState] = useState<string>("");
-  const [searchByCity, setSearchByCity] = useState<string>("");
-  const [searchByHasContract, setSearchByHasContract] = useState<boolean>(true);
-
-  const inputs: Array<DefaultInputData> = [
-    new DefaultInputData(searchByState, setSearchByState, "estado", "select", "Estado", "Estado", "Estado", [new SelectDataClass("", "estado..."), ...states], false, false),
-    new DefaultInputData(searchByCity, setSearchByCity, "cidade", "select", "Cidade", "Cidade", "Cidade", [new SelectDataClass("", "cidade..."), ...states], false, false),
-    new DefaultInputData(searchByHasContract, setSearchByHasContract, "contrato", "checkbox", "Tem contrato", "Tem contrato", "Tem contrato", states, false, false),
-  ];
-
-  const [curIdPrestadorInfo, setCurIdPrestadorInfo] = useState<number | null>(null);
-  const desapear = useDesapear();
-
   const tableTitles: Array<string> = [
     "Perfil",
     "Nome",
     "Avaliação",
     "Valor cobrado",
     "Mais informações"
+  ];
+
+  const allLines = [
+    new Line(createFunctions(), undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(0)),
+    new Line(createFunctions(), undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(1)),
+    new Line(createFunctions(), undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(2)),
+    new Line(createFunctions(), undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(3)),
+    new Line(createFunctions(), undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(4)),
+    new Line(createFunctions(), undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(5)),
+  ]
+
+  const [searchByState, setSearchByState] = useState<string>("");
+  const [searchByCity, setSearchByCity] = useState<string>("");
+  const [searchByHasContract, setSearchByHasContract] = useState<boolean>(true);
+  const [curIdPrestadorInfo, setCurIdPrestadorInfo] = useState<number | null>(null);
+  const [lines, setLines] = useState<Array<Line>>(allLines);
+  const desapear = useDesapear();
+
+  const table = useMemo(() => (<Table titles={tableTitles} lines={lines} />), [lines]);
+
+  const inputs: Array<DefaultInputData> = [
+    new DefaultInputData(searchByState, setSearchByState, "estado", "select", "Estado", "Estado", "Estado", [new SelectDataClass("", "estado..."), ...states], false, false),
+    new DefaultInputData(searchByCity, setSearchByCity, "cidade", "select", "Cidade", "Cidade", "Cidade", [new SelectDataClass("", "cidade..."), ...states], false, false),
+    new DefaultInputData(searchByHasContract, setSearchByHasContract, "contrato", "checkbox", "Tem contrato", "Tem contrato", "Tem contrato", states, false, false),
   ];
 
   function createFunctions(): Functions {
@@ -64,16 +75,6 @@ function Prestadores() {
 
     return functions;
   }
-
-  const allLines = [
-    new Line(createFunctions(), undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(0)),
-    new Line(createFunctions(), undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(1)),
-    new Line(createFunctions(), undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(2)),
-    new Line(createFunctions(), undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(3)),
-    new Line(createFunctions(), undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(4)),
-    new Line(createFunctions(), undefined, undefined, "IMG", "João Cleber Silva", "9 / 10", "R$ 150,55", createButton(5)),
-  ]
-  const [lines, setLines] = useState<Array<Line>>(allLines);
 
   function createButton(id: number): JSX.Element {
     return (
@@ -145,10 +146,7 @@ function Prestadores() {
           <DefaultButton type="submit" label="Buscar" />
         </div>
       </form>
-      <Table
-        titles={tableTitles}
-        lines={lines}
-      />
+      {table}
       {typeof(curIdPrestadorInfo) === "number" && <PrestadorInfo id={curIdPrestadorInfo} onClose={closePrestadorInfo} />}
     </section>
   )

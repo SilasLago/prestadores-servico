@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { SelectDataType } from "interfaces/select_data_type";
-import React from "react";
+import React, { memo } from "react";
 import styles from "./default_input.module.scss";
 
 interface IDefaultInput {
@@ -102,4 +102,4 @@ function DefaultInput({ id, className, type, placeholder, title, label, min, max
   )
 }
 
-export default DefaultInput;
+export default memo(DefaultInput);

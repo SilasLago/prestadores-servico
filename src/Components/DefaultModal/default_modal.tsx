@@ -5,7 +5,7 @@ import styles from "./default_modal.module.scss";
 interface IDefaultModal {
   size: "sm" | "md" | "lg" | "xl",
   title: string,
-  onClose: MouseEventHandler<HTMLDivElement>,
+  onClose: MouseEventHandler<HTMLDivElement> | false,
   children?: any
 }
 function DefaultModal({ size, title, children, onClose }: IDefaultModal) {
@@ -22,7 +22,14 @@ function DefaultModal({ size, title, children, onClose }: IDefaultModal) {
           <h1 className={styles.modal__header__title}>
             {title}
           </h1>
-          <div className={styles.modal__header__close} onClick={onClose} tabIndex={0} onKeyDown={e => e.key === "Enter" ? onClose({} as React.MouseEvent<HTMLDivElement, MouseEvent>) : undefined} />
+          {onClose !== false && (
+            <div 
+              className={styles.modal__header__close} 
+              onClick={onClose} 
+              tabIndex={0} 
+              onKeyDown={e => e.key === "Enter" ? onClose({} as React.MouseEvent<HTMLDivElement, MouseEvent>) : undefined} 
+            />
+          )}
         </div>
         <hr />
         <div className={styles.modal__body}>
