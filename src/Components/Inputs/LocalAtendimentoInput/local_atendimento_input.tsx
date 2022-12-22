@@ -19,15 +19,25 @@ function LocalAtendimentoInput({ locaisSelecionados, setLocaisSelecionados }: IL
   const [openSelection, setOpenSelection] = useState<boolean>(false);
 
   function onSubmitLocalAtendimentoForm() {
-
     const newLocalAtendimento = new PrestadorLocalDeAtendimento(selectedCity, selectedState);
-    const newLocaisSelecionados = [...locaisSelecionados];
-    newLocaisSelecionados.push(newLocalAtendimento);
-
-    setLocaisSelecionados(newLocaisSelecionados);
-    setSelectedCity("");
-    setSelectedState("");
-    alert("Localização adicionada!");
+    if(newLocalAtendimento.isValidLocale()) {
+      
+      const locales = locaisSelecionados.filter(localExistente => !localExistente.isEqual(newLocalAtendimento));
+      
+      if(locales.length === locaisSelecionados.length) {
+        const newLocaisSelecionados = [...locaisSelecionados];
+        newLocaisSelecionados.push(newLocalAtendimento);
+        setLocaisSelecionados(newLocaisSelecionados);
+        setSelectedCity("");
+        setSelectedState("");
+        alert("Nova localização adicionada!");
+      }else {
+        alert("Essa localização já foi adicionada!")
+      }
+      
+    }else {
+      alert("Localização inválida!");
+    }
   }
 
   function closeModal() {
@@ -79,6 +89,7 @@ function LocalAtendimentoInput({ locaisSelecionados, setLocaisSelecionados }: IL
               onChange={setSelectedState}
               data={[new SelectDataClass("", "estado..."), ...states]}
               isPositionFixed={true}
+              required={true}
             />
             <DefaultInput
               id="cidade"
@@ -90,6 +101,7 @@ function LocalAtendimentoInput({ locaisSelecionados, setLocaisSelecionados }: IL
               onChange={setSelectedCity}
               disabled={selectedState === ""}
               isPositionFixed={true}
+              required={true}
             />
             <DefaultButton type="button" label="Adicionar" onClick={onSubmitLocalAtendimentoForm} />
             <hr/>

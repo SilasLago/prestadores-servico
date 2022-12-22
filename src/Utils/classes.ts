@@ -12,4 +12,14 @@ export class PrestadorLocalDeAtendimento {
         public readonly city: string,
         public readonly state: string,
     ) {}
+
+    public isValidLocale(): boolean {
+        return this.city !== "" && this.state !== "";
+    }
+
+    public isEqual(localAtendimento: PrestadorLocalDeAtendimento) {
+        return this.city === localAtendimento.city 
+        && this.state === localAtendimento.state;
+    }
+ 
 }
