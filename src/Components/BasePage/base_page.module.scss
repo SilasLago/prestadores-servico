@@ -2,10 +2,14 @@
 
 .content {
     display: flex;
-    margin-top: $margin-top-base;
-    margin-bottom: $margin-bottom-base;
     &__outlet {
+        border-radius: 20px;
+        background-color: $light-color;
+        margin: 20px;
+        margin-top: $margin-top-base;
+        margin-bottom: $margin-bottom-base;
         padding: 20px;
         width: calc(100% - 40px);
+        box-shadow: 1px 1px 5px $shadow-color;
     }
 }
